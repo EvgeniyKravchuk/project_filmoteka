@@ -1,2 +1,73 @@
 //🍅Сюда импортируем все из этой папки
 @import './logo.scss';
+.header {
+  height: 230px;
+  @media screen and (min-width: 320px) {
+    background-image: url(../images/header/header_m_x1.jpg);
+   @media screen and (min-resolution: 2dppx) {
+      background-image: url(../images/header/header_m_x2.jpg);
+    }
+  }
+  @media screen and (min-width: 768px) {
+   background-image: url(../images/header/header_t_x1.jpg);
+    @media screen and (min-resolution: 2dppx) {
+      background-image: url(../images/header/header_t_x2.jpg);
+    }
+  }
+  @media screen and (min-width: 1024px) {
+     background-image: url(../images/header/header_d_x1.jpg);
+     @media screen and (min-resolution: 2dppx) {
+      background-image: url(../images/header/header_d_x2.jpg);
+    }
+  }
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.nav_list{
+  display: flex;
+  justify-content: space-around;
+  margin-left: 39px;
+}
+.nav_link{
+  color: var(--p-dark-t-color);
+  &.current{
+    &::after{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
+  }
+}
+.search_btn{
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  color: var(--p-dark-t-color);
+  transform: translateY(-20px) translateX(750%); 
+}
+.s_form_input{
+  position: relative;
+  display: block;
+  width: 100%;
+  color: var(--p-dark-t-color);
+ background-color: transparent;
+ border:none;
+ border-bottom: 1px solid var(--p-dark-t-color) ;
+ &::placeholder{
+   font-size: var(--font-regular);
+   color: var(--p-dark-t-color);
+   border-bottom: 1px solid var(--p-dark-t-color) ;
+ }
+ &:focus,:hover{
+   border: none;
+   outline: none;
+   border-bottom: 1px solid var(--p-dark-t-color)
+ }
+}
+.site_nav{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+  }
