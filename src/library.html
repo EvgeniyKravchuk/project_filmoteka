@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+      integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+      <header>
+        <div class="container header">
+    <div class="site_nav">
+        <a href="./" aria-label="логотип сайта" class="logo-link">
+    <svg class="logo-pic" fill="#545454">
+        <use href="./images/svg/sprite.svg#icon-film"></use>
+    </svg><span lang="en" class="logo-text">Filmoteka</span></a>
+   <ul class="nav_list">
+       <li class="nav_list_item"><a href="./index.html" class="nav_link">HOME</a></li>
+       <li class="nav_list_item"><a href="./" class="nav_link current">MY LIBRARY</a></li>
+   </ul>
+    </div>
+   <button type="button" class="lib_btn js_btn_w current_btn">WATCHED</button>
+   <button type="button" class="lib_btn js_btn_q ">QUEUE</button>
+</div>
+      </header>
+    <!--🍅Тут подключаем части HTML (паршалы):-->
+    <include src="./partials/main.html"></include>
+    <include src="./partials/footer.html"></include>
+    <!-- 🍅Наш JS -->
+    <script src="./index.js"></script>
+  </body>
+</html>

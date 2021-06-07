@@ -1,2 +1,13 @@
 //🍅Сюда импортируем все из этой папки
 @import './teamLogo.scss';
+.footer{
+    background-color: #F7F7F7;
+    font-size: 16px;
+    text-align: center;
+     padding: 30px;
+     color: var(--p-text-color);
+}
+.team_link{
+    text-decoration: underline;
+    color: var(--p-text-color);
+}
