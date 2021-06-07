@@ -2,12 +2,9 @@
   width: 320px;
   padding-right: 20px;
   padding-left: 20px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0  auto;
   @media screen and (min-width: 768px) {
-    width: 728px;
-    padding-right: 20px;
-    padding-left: 20px;
+    width: 768px;
   }
   @media screen and (min-width: 1024px) {
     width: 1024px;

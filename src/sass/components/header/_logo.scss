@@ -3,8 +3,21 @@
         display: none;
     }
 }
-
+.logo-link{
+    display: flex;
+    align-items: baseline;
+}
 .logo-pic{
     width: 24px;
     height: 24px;
+    margin-top: 49px;
+    margin-bottom: 43px;
 }
+.logo-text{
+        display: inline-block;
+        text-align: center;
+        color: var(--p-dark-t-color);
+        font-size: var(--font-h-size);
+        margin-left: 10px;
+        font-weight: 500;
+    }
