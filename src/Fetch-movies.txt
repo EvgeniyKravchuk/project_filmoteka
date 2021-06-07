@@ -1,0 +1,42 @@
+    import axios from 'axios'
+    import MoviesApi from './Fetch-movies'
+
+    const fetchMovies = new MoviesApi;
+    
+    fetchMovies methods:
+
+    fetchMainPopularMovies() {
+        вернет промис с массивом из 20ти фильмов с наивысшей популярностью(стр.1)
+    }
+
+    fetchNextPopularMovies() {
+        вернет промис с массивом стр.2, 3, 4 и т.д
+    }
+
+    fetchPrevPopularMovies() {
+        вернет промис с массивом предыдущей от текущей страницы(нужно в интерфейсы ограничить кнопку при нахождении на стр.1)
+    }
+
+    fetchCertainPopularMoviesPage(numberOfPage) {
+        вернет промис с массивом указаной страницы
+    }
+
+    searchMovie(movieName) {
+        вернет промис с массивом из 1-20 фильмов с нахождением запроса в имени (стр.1)
+    }
+
+    nextSearchedMoviePage() {
+        вернет промис с стр.2, 3, 4 и т.д
+    }
+
+    certainSearchedMoviePage(numberOfPage) {
+        вернет указаную страницу
+    }
+
+    prevSearchedMoviePage() {
+        вернет промис с предыдущей страницей(нужно ограничить в интерфейсе при стр.1)
+    }
+
+    async getMovieDetaisById(id) {
+        вернет объект одного фильма
+    }
