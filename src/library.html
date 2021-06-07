@@ -24,19 +24,13 @@
        <li class="nav_list_item"><a href="./" class="nav_link current">MY LIBRARY</a></li>
    </ul>
     </div>
-   <form action="search">
-       <input type="text" placeholder="Поиск фильмов" class="s_form_input js_search_input">
-       <button type="button" class="search_btn"><span><svg class="search_pic">
-        <use href="./images/svg/sprite.svg#icon-search-2-1"></use>
-    </svg></span></button>
-    <p class="error_text">Search result not successful. Enter the correct movie name and</p>
-   </form>
+   <button type="button" class="lib_btn js_btn_w current_btn">WATCHED</button>
+   <button type="button" class="lib_btn js_btn_q ">QUEUE</button>
 </div>
       </header>
     <!--🍅Тут подключаем части HTML (паршалы):-->
     <include src="./partials/main.html"></include>
     <include src="./partials/footer.html"></include>
     <!-- 🍅Наш JS -->
-    <script src="./index.js"></script>
   </body>
 </html>

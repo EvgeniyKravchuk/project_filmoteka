@@ -29,7 +29,7 @@
       margin: 0 auto;
     }
     .search_btn{
-   transform: translateY(-22px) translateX(1520%); 
+   transform: translateY(-22px) translateX(1580%); 
 }
   }
   @media screen and (min-width: 1024px) {
@@ -37,12 +37,13 @@
      @media screen and (min-resolution: 2dppx) {
       background-image: url(../images/header/header_d_x2.jpg);
     }
-  }
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
   background-size:cover;
   .search_btn{
    transform: translateY(-22px) translateX(1980%); 
 }
+  }
+  
 }
 .nav_list{
   display: flex;
