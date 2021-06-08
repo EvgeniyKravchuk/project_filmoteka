@@ -72,9 +72,7 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 "use strict";var e=o(require("../Fetch-movies")),r=o(require("./render-page-func"));function o(e){return e&&e.__esModule?e:{default:e}}const t={queryError:document.querySelector(".error_text")},n=new e.default;window.onload=function(){t.queryError.style.display="none",n.fetchMainPopularMovies().then(r.default).catch(e=>console.log(e))};
 },{"../Fetch-movies":"ZjCR","./render-page-func":"yrMB"}],"ZIKE":[function(require,module,exports) {
 "use strict";var e=t(require("../Fetch-movies")),r=t(require("./render-page-func"));function t(e){return e&&e.__esModule?e:{default:e}}const n=new e.default,o={formInput:document.querySelector("form"),mainContainer:document.querySelector(".js_container"),queryError:document.querySelector(".error_text")};function u(e){e.preventDefault();const r=e.currentTarget.elements[0].value.trim();return o.mainContainer.innerHTML="",n.searchMovie(r).then(i).catch(c)}function c(e){o.queryError.style.display="block",console.error(e.message)}function i(e){if(e.length)return(0,r.default)(e);o.queryError.style.display="block"}o.formInput.addEventListener("submit",u);
-},{"../Fetch-movies":"ZjCR","./render-page-func":"yrMB"}],"sWR1":[function(require,module,exports) {
-const t={switch:document.querySelector("#switch"),fullpage:document.querySelector("#fullpage")};function e(){t.fullpage.classList.toggle("night"),t.switch.classList.toggle("switched")}t.switch.addEventListener("click",e);
-},{}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/components/server-answers/render-page-by-default"),require("./js/components/server-answers/render-page-by-name"),require("./js/components/theme-switcher");
-},{"./sass/main.scss":"clu1","./js/components/server-answers/render-page-by-default":"WoKD","./js/components/server-answers/render-page-by-name":"ZIKE","./js/components/theme-switcher":"sWR1"}]},{},["Focm"], null)
-//# sourceMappingURL=/project_filmoteka/src.65618999.js.map
+},{"../Fetch-movies":"ZjCR","./render-page-func":"yrMB"}],"Focm":[function(require,module,exports) {
+"use strict";require("./sass/main.scss"),require("./js/components/server-answers/render-page-by-default"),require("./js/components/server-answers/render-page-by-name");
+},{"./sass/main.scss":"clu1","./js/components/server-answers/render-page-by-default":"WoKD","./js/components/server-answers/render-page-by-name":"ZIKE"}]},{},["Focm"], null)
+//# sourceMappingURL=/project_filmoteka/src.a82dca3b.js.map
