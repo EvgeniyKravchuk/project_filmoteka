@@ -4,8 +4,9 @@ import renderPage from './render-page-func';
 const movieService = new FetchMovies();
 
 const refs = {
-    formInput: document.querySelector('form'),
-    mainContainer: document.querySelector('.js_container'),
+  formInput: document.querySelector('form'),
+  mainContainer: document.querySelector('.js_container'),
+  queryError: document.querySelector('.error_text'),
 };
 
 refs.formInput.addEventListener('submit', onInputChange);
@@ -17,6 +18,20 @@ function onInputChange(event) {
     refs.mainContainer.innerHTML = '';
   return movieService
     .searchMovie(movieName)
-    .then(renderPage)
-    .catch(error => console.log(error));
+    .then(renderPageByName)
+    .catch(onError);
 }
+
+function onError(error) {
+  refs.queryError.style.display = 'block';
+  console.error(error.message);
+}
+
+function renderPageByName(res) {
+  if (!res.length) {
+    refs.queryError.style.display = 'block';
+  } else {
+    return renderPage(res);
+  }
+}
+

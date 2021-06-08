@@ -11,10 +11,6 @@ window.onload = function () {
   movieService
     .fetchMainPopularMovies()
     .then(renderPage)
-    .catch(error => onError);
+    .catch(error => console.log(error));
 };
 
-function onError(error) {
-    refs.queryError.style.display = 'block';
-    console.error(error.message);
-}
