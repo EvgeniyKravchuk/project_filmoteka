@@ -11,7 +11,7 @@ window.onload = function () {
   movieService
     .fetchMainPopularMovies()
     .then(renderPage)
-    .catch(error => onError(error));
+    .catch(error => onError);
 };
 
 function onError(error) {
