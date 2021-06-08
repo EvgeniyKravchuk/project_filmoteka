@@ -8,7 +8,7 @@ const refs = {
 const movieService = new FetchMovies();
 window.onload = function () {
   refs.queryError.style.display = 'none';
-  movieService
+  return movieService
     .fetchMainPopularMovies()
     .then(renderPage)
     .catch(error => console.log(error));

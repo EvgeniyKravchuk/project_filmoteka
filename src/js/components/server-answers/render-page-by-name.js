@@ -8,16 +8,15 @@ const refs = {
   mainContainer: document.querySelector('.js_container'),
   queryError: document.querySelector('.error_text'),
 };
-
 refs.formInput.addEventListener('submit', onInputChange);
 
 function onInputChange(event) {
   event.preventDefault();
   const searchQuery = event.currentTarget.elements[0].value;
-    const movieName = searchQuery.trim();
-    refs.mainContainer.innerHTML = '';
-  return movieService
-    .searchMovie(movieName)
+  const movieName = searchQuery.trim();
+  refs.mainContainer.innerHTML = '';
+
+  return movieService.searchMovie(movieName)
     .then(renderPageByName)
     .catch(onError);
 }
@@ -27,11 +26,10 @@ function onError(error) {
   console.error(error.message);
 }
 
-function renderPageByName(res) {
-  if (!res.length) {
+function renderPageByName(data) {
+  if (!data.results.length) {
     refs.queryError.style.display = 'block';
   } else {
-    return renderPage(res);
+    return renderPage(data);
   }
 }
-
