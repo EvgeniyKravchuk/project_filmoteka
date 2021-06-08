@@ -66,6 +66,15 @@ export default class FetchMovies {
         return res;
     }
 
+    switchLang() {
+        this.lang === 'en-US' ? this.lang = 'cu' : this.lang = 'en-US';
+    }
+
+    switchAdult() {
+        this.adult ? this.adult = false : this.adult = true;
+    }
+
+
     async getMovieDetaisById(id) {
         const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${this.lang}`)
         return res.data;
@@ -74,11 +83,11 @@ export default class FetchMovies {
     async _fetchMovieByName(query) {
         this._searchQuery = query;
         const res = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${this._searchQuery}&language=${this.lang}&page=${this._queryByNamePage}&include_adult=${this.adult}`)
-        return res.data.results;
+        return res.data;
     }
 
     async _fetchMostPopularMovies() {
         const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${this.lang}&page=${this.page}`)
-        return res.data.results;
+        return res.data;
     }
 }
