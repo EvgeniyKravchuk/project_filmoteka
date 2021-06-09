@@ -1,6 +1,6 @@
 //🍅Сюда импортируем все из этой папки
 @import './logo.scss';
-// @import './theme-switcher';
+@import './theme-switcher';
 .header {
   height: 230px;
   @media screen and (min-width: 320px) {
