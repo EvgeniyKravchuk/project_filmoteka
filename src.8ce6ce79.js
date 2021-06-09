@@ -83,8 +83,8 @@ var e,n=arguments[3];!function(t){"object"==typeof exports&&"undefined"!=typeof 
 },{"../Fetch-movies":"ZjCR","./render-page-func":"yrMB","./preloader":"mwAn"}],"WoKD":[function(require,module,exports) {
 "use strict";var e=o(require("../Fetch-movies")),r=o(require("./render-page-func")),n=require("./preloader");function o(e){return e&&e.__esModule?e:{default:e}}const t={queryError:document.querySelector(".error_text")},u=new e.default;window.onload=function(){return t.queryError.style.display="none",n.spinner.show(),u.fetchMainPopularMovies().then(r.default).then(()=>{n.spinner.close()}).catch(e=>console.log(e))};
 },{"../Fetch-movies":"ZjCR","./render-page-func":"yrMB","./preloader":"mwAn"}],"sWR1":[function(require,module,exports) {
-const e=document.querySelector(".toggle-input"),t=document.querySelector(".js_container"),c="true"===localStorage.getItem("toggleState");function o(c){t.classList.toggle("night"),localStorage.setItem("toggleState",e.checked)}e.checked=c,e.addEventListener("change",o);
+const t=document.querySelector(".toggle-input"),e=document.querySelector(".js_container");function o(t){c(),n(),l()}function c(){document.querySelectorAll(".movie-title").forEach(t=>{t.classList.toggle("text-night")})}function n(){e.classList.toggle("night")}function l(){localStorage.setItem("toggleState",t.checked)}function g(){const e="true"===localStorage.getItem("toggleState");t.checked=e}g(),t.addEventListener("change",o);
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/server-answers/render-page-by-name"),require("./js/components/server-answers/render-page-by-default"),require("./js/components/theme-switcher");
 },{"./sass/main.scss":"clu1","./js/components/server-answers/render-page-by-name":"ZIKE","./js/components/server-answers/render-page-by-default":"WoKD","./js/components/theme-switcher":"sWR1"}]},{},["Focm"], null)
-//# sourceMappingURL=/project_filmoteka/src.04de98c9.js.map
+//# sourceMappingURL=/project_filmoteka/src.8ce6ce79.js.map
