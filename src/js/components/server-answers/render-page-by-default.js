@@ -1,5 +1,6 @@
 import FetchMovies from '../Fetch-movies';
 import renderPage from './render-page-func';
+import { spinner } from './preloader';
 
 const refs = {
   queryError: document.querySelector('.error_text'),
@@ -8,9 +9,12 @@ const refs = {
 const movieService = new FetchMovies();
 window.onload = function () {
   refs.queryError.style.display = 'none';
+  spinner.show();
   return movieService
     .fetchMainPopularMovies()
     .then(renderPage)
+    .then(() => {
+      spinner.close();
+    })
     .catch(error => console.log(error));
 };
-

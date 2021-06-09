@@ -1,5 +1,6 @@
 import FetchMovies from '../Fetch-movies';
 import renderPage from './render-page-func';
+import { spinner } from './preloader';
 
 const movieService = new FetchMovies();
 
@@ -15,9 +16,14 @@ function onInputChange(event) {
   const searchQuery = event.currentTarget.elements[0].value;
   const movieName = searchQuery.trim();
   refs.mainContainer.innerHTML = '';
+  spinner.show();
 
-  return movieService.searchMovie(movieName)
+  return movieService
+    .searchMovie(movieName)
     .then(renderPageByName)
+    .then(() => {
+      spinner.close();
+    })
     .catch(onError);
 }
 
