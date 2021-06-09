@@ -75,4 +75,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../Fetch-movies":"ZjCR","./render-page-func":"yrMB"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/server-answers/render-page-by-name"),require("./js/components/server-answers/render-page-by-default");
 },{"./sass/main.scss":"clu1","./js/components/server-answers/render-page-by-name":"ZIKE","./js/components/server-answers/render-page-by-default":"WoKD"}]},{},["Focm"], null)
-//# sourceMappingURL=/project_filmoteka/src.07d22b0e.js.map
+//# sourceMappingURL=/project_filmoteka/src.cd5593ff.js.map
