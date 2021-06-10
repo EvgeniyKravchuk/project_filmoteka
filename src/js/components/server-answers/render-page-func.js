@@ -6,4 +6,13 @@ const refs = {
 export default function renderPage(body) {
   const markup = MovieCardTemplate(body.results);
   refs.mainContainer.insertAdjacentHTML('beforeend', markup);
+  onshortString();
+}
+
+function onshortString() {
+  const genresSpan = document.querySelectorAll('.genre-title');
+  genresSpan.forEach(e => {
+    const shortString = e.textContent.slice(0, -2);
+    e.textContent = shortString;
+  });
 }

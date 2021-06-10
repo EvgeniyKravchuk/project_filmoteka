@@ -1,38 +1,40 @@
-.cards-list{
-@media screen and (min-width: 768px){display: flex;
-  flex-wrap: wrap;
-  margin-left: -30px;
-  margin-top: -30px;}
+.cards-list {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -30px;
+    margin-top: -30px;
+  }
 }
-.card-item{
-    margin-bottom: 20px;
-     @media screen and (min-width: 320px) {
-         width: 280px;
-         margin-right:auto;
-         margin-left: auto;
-     }
-     @media screen and (min-width: 768px){
+.card-item {
+  margin-bottom: 20px;
+  @media screen and (min-width: 320px) {
+    width: 280px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @media screen and (min-width: 768px) {
     margin-left: 30px;
     margin-top: 30px;
     flex-basis: calc(100% / 2 - 30px);
-    }
-    @media screen and (min-width: 1024px){
+  }
+  @media screen and (min-width: 1024px) {
     margin-left: 30px;
     margin-top: 30px;
     flex-basis: calc(100% / 3 - 30px);
-    }
+  }
 }
-.card-image{
-    border-radius: 6px;
+.card-image {
+  border-radius: 6px;
 }
-.movie-title{
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: var(--font-size-main);
-    font-weight: 500;
+.movie-title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: var(--font-size-main);
+  font-weight: 500;
 }
-.genre{
-    font-size: var(--font-size-main);
-    font-weight: 500;
-    color: var(--accent-color);
+.genre {
+  font-size: var(--font-size-main);
+  font-weight: 500;
+  color: var(--accent-color);
 }
