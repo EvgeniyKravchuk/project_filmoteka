@@ -13,6 +13,7 @@ refs.formInput.addEventListener('submit', onInputChange);
 
 function onInputChange(event) {
   event.preventDefault();
+  refs.queryError.style.display = 'none';
   const searchQuery = event.currentTarget.elements[0].value;
   const movieName = searchQuery.trim();
   refs.mainContainer.innerHTML = '';
@@ -28,6 +29,7 @@ function onInputChange(event) {
 }
 
 function onError(error) {
+  spinner.close();
   refs.queryError.style.display = 'block';
   console.error(error.message);
 }
@@ -35,6 +37,7 @@ function onError(error) {
 function renderPageByName(data) {
   if (!data.results.length) {
     refs.queryError.style.display = 'block';
+    spinner.close();
   } else {
     return renderPage(data);
   }
