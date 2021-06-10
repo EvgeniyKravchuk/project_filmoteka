@@ -39,3 +39,4 @@ function renderPageByName(data) {
     return renderPage(data);
   }
 }
+
