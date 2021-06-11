@@ -4,6 +4,11 @@ const refs = {
   queryError: document.querySelector('.error_text'),
 };
 export default function renderPage(body) {
-  const markup = MovieCardTemplate(body.results);
+    const modifiedArr = body.results.map(res => {
+      res.release_date = res.release_date.slice(0, 4);
+      return res;
+    });
+  
+  const markup = MovieCardTemplate(modifiedArr);
   refs.mainContainer.insertAdjacentHTML('beforeend', markup);
 }
