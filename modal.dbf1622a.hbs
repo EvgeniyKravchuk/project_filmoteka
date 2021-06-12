@@ -1,0 +1,39 @@
+<div class="modal-img-container">
+    <img class="modal-poster" src="https://image.tmdb.org/t/p/original{{poster_path}}" alt="{{original_title}}"
+        data-id="{{id}}" data-src="https://image.tmdb.org/t/p/original{{poster_path}}" />
+</div>
+
+<div class="modal-data">
+    <h2 class="modal-title">{{title}}</h2>
+    <table class="modal-information">
+        <tr>
+            <td class="information-title">Vote / Votes</td>
+            <td><span class="vote-average">{{vote_average}}</span> /
+                <span class="vote-count">{{vote_count}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="information-title">Popularity</td>
+            <td>{{popularity}}</td>
+        </tr>
+        <tr>
+            <td class="information-title">Original Title</td>
+            <td class="original-title">{{original_title}}</td>
+        </tr>
+        <tr>
+            <td class="information-title">Genre</td>
+            <td class="information-genre">{{#each genres}} {{name}} {{/each}}</td>
+        </tr>
+    </table>
+
+    <p class="modal-overview-title">About</p>
+    <p class="modal-overview">{{overview}}</p>
+
+    <div class="modal-buttons">
+        <button class="modal-buttons-watched js-watched" type="button" data-id='{{id}}' data-action='add'>add to
+            watched</button>
+        <button class="modal-buttons-queue js-queue" type="button" data-id='{{id}}' data-action='add'>add to
+            queue</button>
+    </div>
+    </p>
+</div>
