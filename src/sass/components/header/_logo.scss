@@ -2,12 +2,12 @@
 .logo-link{
     display: flex;
     align-items: baseline;
+    margin-top: 49px;
+    margin-bottom: 43px;
 }
 .logo-pic{
     width: 24px;
     height: 24px;
-    margin-top: 49px;
-    margin-bottom: 43px;
 }
 .logo-text{
      @media screen and (min-width: 320px) and (max-width: 767px){
