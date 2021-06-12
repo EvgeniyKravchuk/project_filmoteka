@@ -1,5 +1,6 @@
 const themeSwitcherToggleRef = document.querySelector('.toggle-input');
-const mainRef = document.querySelector('.js_container');
+const bodyRef = document.querySelector('.js-body');
+const footerRef = document.querySelector('.footer');
 
 localStorageDataGet();
 
@@ -21,7 +22,9 @@ function switchThemeOnTextContent() {
 }
 
 function switchThemeOnBackground() {
-  mainRef.classList.toggle('night');
+  bodyRef.classList.toggle('night');
+  footerRef.classList.toggle('night');
+  footerRef.classList.toggle('day');
 }
 
 function localStorageDataSet() {
@@ -32,4 +35,8 @@ function localStorageDataGet() {
   const initialState = localStorage.getItem('toggleState') === 'true';
 
   themeSwitcherToggleRef.checked = initialState;
+
+  if (initialState) {
+    switchThemeOnBackground();
+  }
 }
