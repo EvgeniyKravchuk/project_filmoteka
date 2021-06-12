@@ -25,6 +25,11 @@ function onFormSubmit(event) {
     .then(() => {
       spinner.close();
     })
+    .then(() => {
+      document.querySelectorAll('.movie-title');
+
+    })
+
     .catch(onError);
 }
 
@@ -42,4 +47,4 @@ function renderPageByName(data) {
     return renderPage(data);
   }
 }
-
+console.log(CardsTitlesRef);

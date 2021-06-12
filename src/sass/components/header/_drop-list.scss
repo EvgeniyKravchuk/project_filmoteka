@@ -1,13 +1,25 @@
-.card-list {
-  display: block;
-  height: 30px;
+.card-list-wrapper {
+  display: none;
+  display: flex;
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
   outline: solid 1px tomato;
 }
+.isready {
+  display: block;
+}
+
 
 .cards-list {
-    display:block;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    color: white;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100px;
+  background-color: #fff;
+  // position:absolute;
+  top: 50%;
+  left: 50%;
+  color: black;
+  width: auto;
 }
