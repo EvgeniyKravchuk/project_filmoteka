@@ -171,6 +171,14 @@
 
 .night {
   background-color: #111111;
+
+  .movie-title {
+    color: var(--p-dark-t-color);
+  }
+
+  .footer {
+    background-color: #111111;
+  }
 }
 
 .day {
