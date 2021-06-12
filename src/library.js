@@ -2,3 +2,4 @@
 import './sass/main.scss';
 //🍅Тут импорт js файлов:
 import './js/components/theme-switcher.js';
+import './js/components/localStorage';
