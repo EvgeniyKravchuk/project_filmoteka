@@ -97,4 +97,4 @@ const e={body:document.querySelector("body"),openTeamModal:document.querySelecto
 },{"../../../templates/cardsList.hbs":"Wg7s","../Fetch-movies":"ZjCR"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/server-answers/render-page-by-name"),require("./js/components/server-answers/render-page-by-default"),require("./js/components/movie-details"),require("./js/components/theme-switcher"),require("./js/components/team-modal"),require("./js/components/server-answers/drop-down-list");
 },{"./sass/main.scss":"clu1","./js/components/server-answers/render-page-by-name":"ZIKE","./js/components/server-answers/render-page-by-default":"WoKD","./js/components/movie-details":"Tqtg","./js/components/theme-switcher":"sWR1","./js/components/team-modal":"Cw5H","./js/components/server-answers/drop-down-list":"nydf"}]},{},["Focm"], null)
-//# sourceMappingURL=/project_filmoteka/src.1a7c3af6.js.map
+//# sourceMappingURL=/project_filmoteka/src.de2e5ee4.js.map
