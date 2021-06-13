@@ -23,14 +23,13 @@
 
 .modal {
   position: absolute;
-  top: 20px;
 
   background-color: #fff;
   color: var(--h-text-color);
 
   @media screen and (max-width: 767px) {
     height: 94%;
-
+    top: 20px;
     padding: 20px;
 
     width: 280px;
