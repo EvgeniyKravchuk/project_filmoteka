@@ -1,14 +1,10 @@
 <div class="backdrop">
   <div class="modal">
-    <button class="modal-close-btn" type="button" data-action="close-modal"></button>
+    <button class="modal-close-btn" type="button" data-action="close-modal">
+      <svg class="close-button-image" width="30px" height="30px">
+        <use href="./images/svg/sprite.svg#close-button"></use>
+      </svg>
+    </button>
     <div class="modal-container"></div>
-    <div class="modal-buttons">
-      <button class="modal-buttons-watched js-watched" type="button" data-action="add">
-        Add to watched
-      </button>
-      <button class="modal-buttons-queue js-queue" type="button" data-action="add">
-        Add to queue
-      </button>
-    </div>
   </div>
 </div>

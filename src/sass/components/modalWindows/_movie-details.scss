@@ -22,9 +22,231 @@
 }
 
 .modal {
-  background-color: #fff;
+  position: absolute;
+  top: 20px;
 
-  &-poster {
-    width: 100px;
+  background-color: #fff;
+  color: var(--h-text-color);
+
+  @media screen and (max-width: 767px) {
+    height: 94%;
+
+    padding: 20px;
+
+    width: 280px;
+
+    overflow: scroll;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 618px;
+
+    padding-top: 42px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 28px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 882px;
+
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+  }
+}
+
+.modal-container {
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.modal-img-container {
+  width: 240px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 28px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    margin-right: 32px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+    margin-right: 30px;
+  }
+}
+
+.modal-data {
+  @media screen and (min-width: 768px) {
+    width: 264px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+  }
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  background-color: var(--p-dark-t-color);
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+
+  cursor: pointer;
+
+  z-index: 1000;
+}
+
+.close-button-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-title {
+  font-family: var(--font-family-1);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.172;
+
+  text-transform: uppercase;
+
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+  }
+}
+
+.movie-cardinfo-list {
+  margin-bottom: 20px;
+}
+
+.movie-cardinfo-list-item {
+  display: flex;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.movie-cardinfo-list-item:last-child .movie-cardcontent-item {
+  text-transform: capitalize;
+}
+
+.movie-cardinfo-title {
+  color: #8c8c8c;
+
+  min-width: 69px;
+  margin-right: 39px;
+
+  font-family: var(--font-family-1);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+}
+
+.movie-cardcontent-item {
+  font-family: var(--font-family-1);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+
+  text-transform: uppercase;
+}
+
+.modal-overview-title {
+  font-family: var(--font-family-1);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+
+  margin-bottom: 10px;
+
+  text-transform: uppercase;
+}
+
+.modal-overview {
+  font-family: var(--font-family-1);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.666;
+
+  margin-bottom: 20px;
+}
+
+.movie-cardvote {
+  display: inline-block;
+
+  text-align: center;
+
+  border-radius: 5px;
+
+  width: 36px;
+  height: 16px;
+
+  background-color: var(--accent-color);
+  color: var(--p-dark-t-color);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-buttons-watched {
+  margin-right: 15px;
+}
+
+.modal-buttons-queue,
+.modal-buttons-watched {
+  font-family: var(--font-family-1);
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+
+  text-align: center;
+
+  text-transform: uppercase;
+
+  width: 113px;
+  height: 45px;
+
+  border: 1px solid black;
+  border-radius: 5px;
+
+  background-color: var(--p-dark-t-color);
+
+  @media screen and (min-width: 768px) {
+    width: 125px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 136px;
+  }
+}
+
+.modal-buttons-queue:hover,
+.modal-buttons-watched:hover,
+.modal-buttons-queue:focus,
+.modal-buttons-watched:focus {
+  background-color: var(--accent-color);
+
+  border: none;
+
+  color: var(--p-dark-t-color);
 }
