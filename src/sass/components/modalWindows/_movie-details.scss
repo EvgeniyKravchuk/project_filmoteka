@@ -203,8 +203,11 @@
 
 .modal-buttons {
   display: flex;
-  justify-content: center;
-  align-items: center;
+
+  @media screen and (max-width: 1023px) {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .modal-buttons-watched {
