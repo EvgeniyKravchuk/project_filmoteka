@@ -9,6 +9,7 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
   modal: document.querySelector('.modal-container'),
   closeModalBtn: document.querySelector('.modal-close-btn'),
+  body: document.querySelector('.js-body'),
 };
 
 let backdropEvtListner = 0;
@@ -30,6 +31,7 @@ function openModal(data) {
   refs.modal.innerHTML = modalTpl(data);
   backdropEvtListner = refs.backdrop.addEventListener('click', onBackdropClick);
   closeModalEscEvtListner = window.addEventListener('keydown', onBackdropEscClick);
+  refs.body.classList.add('is-hidden');
   localeStorage();
 }
 
@@ -37,18 +39,22 @@ function closeModal() {
   refs.backdrop.removeEventListener('click', backdropEvtListner);
   window.removeEventListener('keydown', closeModalEscEvtListner);
   refs.backdrop.classList.remove('is-open');
+  refs.body.classList.remove('is-hidden');
   refs.modal.innerHTML = '';
 }
 
 function onBackdropClick(evt) {
   const nodeName = evt.target.nodeName;
   const classList = evt.target.classList;
+  console.log(nodeName);
 
   if (
     (nodeName === 'DIV' && classList.contains('backdrop')) ||
-    (nodeName === 'BUTTON' && classList.contains('modal-close-btn'))
+    (nodeName === 'svg' && classList.contains('close-button-image')) ||
+    nodeName === 'use'
   ) {
     closeModal();
+    console.log(nodeName);
   }
 }
 
