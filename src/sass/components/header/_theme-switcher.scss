@@ -176,8 +176,13 @@
     color: var(--p-dark-t-color);
   }
 
-  .footer {
+  .footer,
+  .modal {
     background-color: #111111;
+  }
+
+  .modal {
+    color: #ffffff;
   }
 }
 
