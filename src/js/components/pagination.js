@@ -12,14 +12,14 @@ const refs = {
 
 let filmsOnPage = 20;
 
-// total_results приходит в объекте
+        // total_results приходит в объекте
 // let countOfPages = Math.ceil(total_results / filmsOnPage); 
 
 
 
 
+        //вешаем <li> и <a>
 
-//вешаем <li> и <a>
 let paginationItemsArr = [];
 
 
@@ -70,7 +70,7 @@ function setActiveLink(nextActiveLink) {
 }
 
 
-//переключение страницы, использовать методы FetchMovies от Никиты
+//переключение страницы, использовать методы класса FetchMovies от Никиты
 function switchPage(currentActiveLink) {
 
 
