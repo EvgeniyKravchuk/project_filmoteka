@@ -91,6 +91,8 @@
   border-radius: 40px;
   z-index: 2;
   opacity: 0;
+
+  cursor: pointer;
 }
 
 .toggle-switch {
@@ -169,8 +171,20 @@
 
 .night {
   background-color: #111111;
+
+  .movie-title {
+    color: var(--p-dark-t-color);
+  }
+
+  .footer {
+    background-color: #111111;
+  }
+}
+
+.day {
+  background-color: #f7f7f7;
 }
 
 .text-night {
-  color: var(--p-dark-t-color)
+  color: var(--p-dark-t-color);
 }

@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body class="js-body">
       <header>
         <div class="container header library">
     <div class="site_nav">
@@ -28,11 +28,13 @@
   <button type="button" class="lib_btn js_btn_w current_btn">WATCHED</button>
   <button type="button" class="lib_btn js_btn_q ">QUEUE</button>
   </div>
+  <include src="./partials/theme-switcher.html"></include>
 </div>
       </header>
     <!--🍅Тут подключаем части HTML (паршалы):-->
     <include src="./partials/main.html"></include>
     <include src="./partials/footer.html"></include>
+    <include src="./partials/team-modal.html"></include>
     <!-- 🍅Наш JS -->
     <script src="./library.js"></script>
   </body>

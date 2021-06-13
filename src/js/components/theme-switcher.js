@@ -1,27 +1,18 @@
 const themeSwitcherToggleRef = document.querySelector('.toggle-input');
-const mainRef = document.querySelector('.js_container');
+const bodyRef = document.querySelector('.js-body');
 
 localStorageDataGet();
 
 themeSwitcherToggleRef.addEventListener('change', switchTheme);
 
 function switchTheme(e) {
-  switchThemeOnTextContent();
   switchThemeOnBackground();
 
   localStorageDataSet();
 }
 
-function switchThemeOnTextContent() {
-  const movieTitlesRef = document.querySelectorAll('.movie-title');
-
-  movieTitlesRef.forEach(element => {
-    element.classList.toggle('text-night');
-  });
-}
-
 function switchThemeOnBackground() {
-  mainRef.classList.toggle('night');
+  bodyRef.classList.toggle('night');
 }
 
 function localStorageDataSet() {
@@ -32,4 +23,8 @@ function localStorageDataGet() {
   const initialState = localStorage.getItem('toggleState') === 'true';
 
   themeSwitcherToggleRef.checked = initialState;
+
+  if (initialState) {
+    switchThemeOnBackground();
+  }
 }
