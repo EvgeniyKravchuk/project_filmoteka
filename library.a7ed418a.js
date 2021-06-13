@@ -7,4 +7,4 @@ const t=document.querySelector(".toggle-input"),e=document.querySelector(".js-bo
 },{}],"I9BA":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/theme-switcher.js"),require("./js/components/localStorage");
 },{"./sass/main.scss":"clu1","./js/components/theme-switcher.js":"sWR1","./js/components/localStorage":"MOHC"}]},{},["I9BA"], null)
-//# sourceMappingURL=/project_filmoteka/library.505b3830.js.map
+//# sourceMappingURL=/project_filmoteka/library.a7ed418a.js.map
