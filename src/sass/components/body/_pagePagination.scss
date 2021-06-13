@@ -1,19 +1,9 @@
-// a {
-//   text-decoration: none;
-//   color: black;
-// }
-
-// li {
-//   list-style: none;
-// }
-
 .pagination-section {
   padding-bottom: 60px;
   padding-top: 50px;
 }
 
 .pagination {
-  /* outline: 1px solid tomato; */
   display: flex;
   justify-content: center;
 }
@@ -65,8 +55,3 @@
 .icon-next:hover {
   fill: grey;
 }
-
-// .icon-previous:focus,
-// .icon-next:focus {
-//   fill: currentColor;
-// }
