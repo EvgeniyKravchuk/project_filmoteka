@@ -13,19 +13,28 @@ refs.formInput.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  refs.queryError.style.display = 'none';
+  
   const searchQuery = event.currentTarget.elements[0].value;
   const movieName = searchQuery.trim();
   refs.mainContainer.innerHTML = '';
   spinner.show();
 
-  return movieService
-    .searchMovie(movieName)
-    .then(renderPageByName)
-    .then(() => {
-      spinner.close();
-    })
-    .catch(onError);
+  if (searchQuery === '') {
+    return movieService
+      .fetchMainPopularMovies()
+      .then(renderPage)
+      .then(() => {
+        spinner.close();
+      }).then(() => refs.queryError.style.display = 'block')
+      .catch(error => console.log(error));
+  }
+    return movieService
+      .searchMovie(movieName)
+      .then(renderPageByName)
+      .then(() => {
+        spinner.close();
+      })
+      .catch(onError);
 }
 
 function onError(error) {

@@ -1,7 +1,8 @@
 import cardListTemplate from '../../../templates/cardsList.hbs';
 import FetchMovies from '../Fetch-movies';
 import debounce from 'lodash.debounce';
-import cardFilmTemlate from '../../../templates/card.hbs';
+import cardFilmTemlate from '../../../templates/singleCard.hbs';
+
 
 const refs = {
   mainInput: document.querySelector('.js_search_input'),
@@ -50,7 +51,7 @@ function renderFilm(data) {
   const markup = cardFilmTemlate([data]);
   refs.mainContainer.innerHTML = '';
   refs.mainContainer.insertAdjacentHTML('beforeend', markup);
-  onshortString();
+
 }
 
 function clearList() {
