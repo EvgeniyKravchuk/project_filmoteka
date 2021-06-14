@@ -1,6 +1,6 @@
 import modalTpl from '../../templates/modal.hbs';
 import FetchMovies from './Fetch-movies';
-import localeStorage from './localStorage';
+import localStorage from './localStorage.js';
 
 const fetchMovies = new FetchMovies();
 
@@ -14,6 +14,8 @@ const refs = {
 
 let backdropEvtListner = 0;
 let closeModalEscEvtListner = 0;
+const arrayWithFilnIdW = [];
+const arrayWithFilnIdQ = [];
 
 refs.jsContainer.addEventListener('click', onMovieCardClick);
 
@@ -32,7 +34,7 @@ function openModal(data) {
   backdropEvtListner = refs.backdrop.addEventListener('click', onBackdropClick);
   closeModalEscEvtListner = window.addEventListener('keydown', onBackdropEscClick);
   refs.body.classList.add('is-hidden');
-  localeStorage();
+  localStorage(arrayWithFilnIdW, arrayWithFilnIdQ);
 }
 
 function closeModal() {
@@ -63,3 +65,11 @@ function onBackdropEscClick(evt) {
     closeModal();
   }
 }
+//for LocalStorage
+// function createLocalStoregeArrays() {
+//   const arrayWithFilnId = [];
+//   const array = arrayWithFilnId;
+//   return array;
+// }
+
+// export default createLocalStoregeArrays;

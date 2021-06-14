@@ -1,11 +1,13 @@
-import fetchMovies from './Fetch-movies';
-
+import fetchMovies from './Fetch-movies.js';
+import createLocalStoregeArrays from './movie-details';
+console.log(createLocalStoregeArrays);
 const fetchMoviesNew = new fetchMovies();
 
 // getMovieDetaisById(id)
 
-export default function () {
+export default function (arrayWithFilnIdW, arrayWithFilnIdQ) {
   //прописать переменные с баттонами
+  console.log(arrayWithFilnIdW);
   const ref = {
     buttonToW: document.querySelector('.js-watched'),
     buttonToQ: document.querySelector('.js-queue'),
@@ -18,8 +20,6 @@ export default function () {
 
   let indexOfElW = '';
   let indexOfElQ = '';
-  let indexOfElWArray = [];
-  let indexOfElQArray = [];
 
   //создать переменные для названия баттонов
   const classNameActive = 'modalBtnWat-active';
@@ -35,42 +35,40 @@ export default function () {
 
   function onMovieCardClickWatched(evt) {
     indexOfElW = ref.imageModal.dataset.id;
-    console.log(indexOfElW);
+
     addFilmToWatched();
     localStorageIdSetToWatched();
-    console.log(indexOfElWArray);
   }
 
   function onMovieCardClickQueue(evt) {
     indexOfElQ = ref.imageModal.dataset.id;
-    console.log(indexOfElQ);
+
     addFilmToQueue();
     localStorageIdSetToQueue();
-    console.log(indexOfElQArray);
   }
 
   //записать id и поменять название кнопки на remove
   function localStorageIdSetToWatched() {
-    localStorage.setItem('watched', JSON.stringify(indexOfElWArray));
+    localStorage.setItem('watched', JSON.stringify(arrayWithFilnIdW));
   }
 
   function localStorageIdSetToQueue() {
-    localStorage.setItem('queue', JSON.stringify(indexOfElQArray));
+    localStorage.setItem('queue', JSON.stringify(arrayWithFilnIdQ));
   }
 
   function addFilmToWatched() {
-    if (indexOfElWArray.includes(indexOfElW)) {
+    if (arrayWithFilnIdW.includes(indexOfElW)) {
       return;
     } else {
-      indexOfElWArray.push(indexOfElW);
+      arrayWithFilnIdW.push(indexOfElW);
     }
   }
 
   function addFilmToQueue() {
-    if (indexOfElQArray.includes(indexOfElQ)) {
+    if (arrayWithFilnIdQ.includes(indexOfElQ)) {
       return;
     } else {
-      indexOfElQArray.push(indexOfElQ);
+      arrayWithFilnIdQ.push(indexOfElQ);
     }
   }
 
