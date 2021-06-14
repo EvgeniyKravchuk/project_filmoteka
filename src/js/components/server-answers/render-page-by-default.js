@@ -1,6 +1,7 @@
 import FetchMovies from '../Fetch-movies';
 import renderPage from './render-page-func';
 import { spinner } from './preloader';
+import renderPaginationBody from '../pagination'
 
 const refs = {
   queryError: document.querySelector('.error_text'),
@@ -12,7 +13,11 @@ window.onload = function () {
   spinner.show();
   return movieService
     .fetchMainPopularMovies()
-    .then(renderPage)
+    .then(data => {
+      renderPage(data);
+      return data;
+    })
+    .then(renderPaginationBody)
     .then(() => {
       spinner.close();
     })
