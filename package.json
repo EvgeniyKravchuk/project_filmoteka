@@ -29,6 +29,7 @@
     "axios": "^0.21.1",
     "basiclightbox": "^5.0.4",
     "js": "^0.1.0",
+    "lodash.debounce": "^4.0.8",
     "s": "^1.0.0",
     "spin.js": "^4.1.0"
   }

@@ -1,18 +1,19 @@
 import cardListTemplate from '../../../templates/cardsList.hbs';
 import FetchMovies from '../Fetch-movies';
+import debounce from 'lodash.debounce';
 
 const refs = {
   mainInput: document.querySelector('.js_search_input'),
   queryError: document.querySelector('.error_text'),
-  cardListContainer: document.querySelector('.card-list'),
+  liveSearchContainer: document.querySelector('.live-search-wrapper'),
 };
 
-refs.mainInput.addEventListener('input', onInputChange);
+refs.mainInput.addEventListener('input', debounce(onInputChange, 500));
 const movieService = new FetchMovies();
 function onInputChange(e) {
   refs.queryError.style.display = 'none';
     const searchQuery = e.target.value;
-     refs.cardListContainer.innerHTML = '';
+     refs.liveSearchContainer.innerHTML = '';
   console.log(searchQuery);
   const movieName = searchQuery.trim();
 
@@ -24,5 +25,5 @@ function onInputChange(e) {
 
 function renderListTitle(body) {
   const markup = cardListTemplate(body.results);
-  refs.cardListContainer.insertAdjacentHTML('beforeend', markup);
+  refs.liveSearchContainer.insertAdjacentHTML('beforeend', markup);
 }

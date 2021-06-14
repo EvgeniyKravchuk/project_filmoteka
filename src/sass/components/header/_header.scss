@@ -76,6 +76,7 @@
   margin-right: 39px;
 }
 .search_btn {
+  position: absolute;
   background-color: transparent;
   border: none;
   color: var(--p-dark-t-color);
@@ -111,6 +112,7 @@
   margin-bottom: 4px;
 }
 .error_text {
+  display: none;
   color: var(--p-error-t-color);
   text-align: center;
   margin-top: 22px;
