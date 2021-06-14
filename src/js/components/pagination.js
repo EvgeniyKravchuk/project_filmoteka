@@ -1,77 +1,87 @@
-import FetchMovies from './Fetch-movies.js';
-
-
-const fetchMovies = new FetchMovies();
-
 const refs = {
-    pagination: document.querySelector('.pagination'),
-    previousPage:document.querySelector('.previous'),
-    nextPage: document.querySelector('.next'),
-    paginationItems: document.querySelectorAll('.pagination-page'),
-}
+  markupContainer: document.querySelector('.pagination-page-list'),
+};
 
-let filmsOnPage = 20;
+export default function renderPaginationBody(data) {
+  const currPage = data.page;
+  const totalPages = data.total_pages;
+  const markupContainer = refs.markupContainer;
 
-        // total_results приходит в объекте
-// let countOfPages = Math.ceil(total_results / filmsOnPage); 
+  const itemsRef = markupContainer.querySelectorAll('.pagination-item');
+  const itemTotalRef = markupContainer.querySelector('.item-total');
+  const itemsDotsFirstRef = markupContainer.querySelector('.item-dots-first');
+  const itemsDotsLastRef = markupContainer.querySelector('.item-dots-last');
 
+  if (currPage > 0 && currPage < 5) {
+    itemsDotsFirstRef.hidden = true;
+    itemsDotsLastRef.hidden = false;
 
-
-
-        //вешаем <li> и <a>
-
-let paginationItemsArr = [];
-
-
-// i<=countOfPages
-for (let i = 1; i <= 10; i++) {
-    const liEl = document.createElement('li');
-    refs.pagination.insertBefore(liEl, refs.nextPage);
-    liEl.classList.add('pagination-page');
-    paginationItemsArr.push(liEl);
-
-    const linkItem = document.createElement('a');
-    linkItem.href = "#";
-    linkItem.classList.add('pagination-link');
-    linkItem.innerHTML = i;
-
-    liEl.appendChild(linkItem);
- 
-}
-
-
-// первая страница подсвечивается по умолчанию
-paginationItemsArr[0].firstElementChild.classList.add('active');
-
-
-refs.pagination.addEventListener("click", onClickPage);
-
-function onClickPage(event) {
-  event.preventDefault();
-  const target = event.target;
-  if (target.nodeName !== "A") return;
-
-  setActiveLink(target);
-  
-}
-
-// подсвечивается текущая страница
-function setActiveLink(nextActiveLink) {
-
-  let currentActiveLink = refs.pagination.querySelector(".pagination-link.active");
-   
-  if (currentActiveLink) {
-    currentActiveLink.classList.remove("active");
+    itemsRef.forEach((item, index) => {
+      item.classList.remove('current-item');
+      changeItemText(item, (index + 1));
+      if (index + 1 === currPage) {
+        item.classList.add('current-item');
+      }
+    });
   }
-  nextActiveLink.classList.add("active");
 
-  switchPage();
-   
-}
+  if (currPage > 4 && currPage < (totalPages - 4)) {
+    itemsDotsFirstRef.hidden = false;
+    itemsDotsLastRef.hidden = false;
+    itemsRef.forEach((item, index) => {
+      item.classList.remove('current-item');
+      switch (index) {
+        case 0:
+          changeItemText(item, 1);
+          break;
+        case 1:
+          changeItemText(item, currPage - 2);
+          break;
+        case 2:
+          changeItemText(item, currPage - 1);
+          break;
+        case 3:
+          changeItemText(item, currPage);
+          item.classList.add('current-item');
+          break;
+        case 4:
+          changeItemText(item, currPage + 1);
+          break;
+        case 5:
+          changeItemText(item, currPage + 2);
+          break;
+      }
+    });
+  }
 
+  if(currPage >= (totalPages - 4)) {
+    itemsDotsFirstRef.hidden = false;
+    itemsDotsLastRef.hidden = true;
+    const reversedItemsRefs = [...itemsRef].reverse()
+    reversedItemsRefs.forEach((item, index) => {
+        item.classList.remove('current-item');
+        changeItemText(item, totalPages - index - 1);
+        changeItemText(reversedItemsRefs[reversedItemsRefs.length - 1], 1)
+        if((item.dataset.page) == currPage) {
+            item.classList.add('current-item');
+        }
+        if(totalPages === currPage) {
+            itemTotalRef.classList.add('current-item')
+        }
+      });
+  }
 
-//переключение страницы, использовать методы класса FetchMovies от Никиты
-function switchPage(currentActiveLink) {
+  if(window.screen.width <= 768) {
+            itemsDotsFirstRef.hidden = true;
+        itemsDotsLastRef.hidden = true;
+  }
 
+  itemTotalRef.innerHTML = totalPages;
+  itemTotalRef.dataset.page = totalPages;
+  
 
+  function changeItemText(item, text) {
+    item.textContent = text;
+    item.dataset.page = text;
+  }
 }

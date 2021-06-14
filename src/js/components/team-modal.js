@@ -4,10 +4,6 @@ const refs = {
   teamModal: document.querySelector('.js-team-modal'),
   backdropTeamModal: document.querySelector('.team-backdrop'),
 };
-console.log(refs.openTeamModal);
-console.log(refs.body);
-console.log(refs.teamModal);
-console.log(refs.backdropTeamModal);
 
 refs.openTeamModal.addEventListener('click', openModal);
 

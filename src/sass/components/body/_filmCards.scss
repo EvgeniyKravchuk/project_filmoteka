@@ -41,3 +41,10 @@ margin-left: -30px;
     font-weight: 500;
     color: var(--accent-color);
 }
+.genre-title span {
+    &:not(:last-of-type){
+        &::after {
+            content: ",";
+        }
+    }
+}
