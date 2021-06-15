@@ -10,11 +10,14 @@ export default function (watched) {
   onMovieCardClickWatched(watched);
 }
 
-export function featchFilmsByIdWatched() {
+export function  featchFilmsByIdWatched() {
   let watchedForRender = JSON.parse(localStorage.getItem(`watched`)) || [];
-
-  watchedForRender.forEach(element => {
-    fetchMovies.getMovieDetaisById(element).then(renderMarcupForWotchedFilms).catch(console.log);
+  
+  watchedForRender.forEach(element =>  {
+    fetchMovies.getMovieDetaisById(element).then(response => {
+      renderMarcupForWotchedFilms(response)
+      console.log(response)
+    })
   });
 }
 
@@ -24,5 +27,4 @@ function onMovieCardClickWatched(watched) {
 
 function renderMarcupForWotchedFilms(data) {
   refs.main.insertAdjacentHTML('afterend', cardLibreryTpl(data));
-  console.log(data);
 }
