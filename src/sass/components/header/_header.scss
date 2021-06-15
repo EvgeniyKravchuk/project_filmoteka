@@ -27,6 +27,7 @@
     }
     .search_form{
       display: flex;
+      align-items: center;
       justify-content: center;  
     }
     .s_form_input {
@@ -91,6 +92,7 @@
     color: var(--p-dark-t-color);
     border-bottom: 1px solid var(--p-dark-t-color);
     margin-bottom: 4px;
+    border: none;
   }
   &:focus,
   :hover {
