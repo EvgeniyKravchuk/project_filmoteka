@@ -4,50 +4,50 @@
 .header {
   height: 230px;
   @media screen and (min-width: 320px) {
-    background-image: url(../images/header/header_m_x1.jpg);
+    background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+     url(../images/header/header_m_x1.jpg);
     @media screen and (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_m_x2.jpg);
+      background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+       url(../images/header/header_m_x2.jpg);
     }
     .s_form_input {
-      width: 100%;
+      display: inline-flex;
+      width: 99%;
     }
-    .search_btn {
-      position: absolute;
-      background-color: transparent;
-      border: none;
-      color: var(--p-dark-t-color);
-      transform: translateY(-22px) translateX(750%);
+    .search_pic {
+      margin-left: -22px;
     }
   }
   @media screen and (min-width: 768px) {
-    background-image: url(../images/header/header_t_x1.jpg);
+    background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)), 
+    url(../images/header/header_t_x1.jpg);
     @media screen and (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_t_x2.jpg);
+      background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+       url(../images/header/header_t_x2.jpg);
+    }
+    .search_form{
+      display: flex;
+      justify-content: center;  
     }
     .s_form_input {
-      width: 336px;
-      align-items: center;
-      margin: 0 auto;
-    }
-    .search_btn {
-      transform: translateY(-22px) translateX(1580%);
+      width: 50%;
     }
   }
   @media screen and (min-width: 1024px) {
-    background-image: url(../images/header/header_d_x1.jpg);
+    background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+     url(../images/header/header_d_x1.jpg);
     @media screen and (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_d_x2.jpg);
+      background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+       url(../images/header/header_d_x2.jpg);
     }
     background-repeat: no-repeat;
     background-size: cover;
-    .search_btn {
-      transform: translateY(-22px) translateX(1980%);
-    }
   }
 }
 
 .nav_list {
   display: flex;
+  align-items: baseline;
   justify-content: space-around;
   margin-left: 39px;
   margin-top: 58px;
@@ -82,7 +82,6 @@
   color: var(--p-dark-t-color);
 }
 .s_form_input {
-  display: block;
   color: var(--p-dark-t-color);
   background-color: transparent;
   border: none;
@@ -103,13 +102,8 @@
 .site_nav {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-}
-.search_pic {
-  width: 20px;
-  height: 20px;
-  margin-right: 0;
-  margin-bottom: 4px;
 }
 .error_text {
   display: none;
@@ -152,20 +146,28 @@
 
 .library{
   @media screen and (min-width: 320px) {
-    background-image: url(../images/header/lib_m_x1.jpg);
+    background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+     url(../images/header/lib_m_x1.jpg);
     @media screen and (min-resolution: 2dppx) {
-      background-image: url(../images/header/lib_m_x2.jpg);
+      background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+       url(../images/header/lib_m_x2.jpg);
     }
   }
   @media screen and (min-width: 768px) {
-    background-image: url(../images/header/lib_t_x1.jpg);
+    background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+     url(../images/header/lib_t_x1.jpg);
     @media screen and (min-resolution: 2dppx) {
-      background-image: url(../images/header/lib_t_x2.jpg);
+      background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+       url(../images/header/lib_t_x2.jpg);
     }
   }
   @media screen and (min-width: 1024px) {
-    background-image: url(../images/header/lib_d_x1.jpg);
+    background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+     url(../images/header/lib_d_x1.jpg);
     @media screen and (min-resolution: 2dppx) {
-      background-image: url(../images/header/lib_d_x2.jpg);
+      background-image:linear-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)),
+       url(../images/header/lib_d_x2.jpg);
     }}
+background-repeat: no-repeat;
+background-size: cover;
 }

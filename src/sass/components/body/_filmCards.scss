@@ -1,36 +1,35 @@
 .cards-list{
-@media screen and (min-width: 768px){display: flex;
-  flex-wrap: wrap;
-//   margin-left: -30px;
-//   margin-top: -30px;}
+@media screen and (min-width: 768px){
+display: flex;
+flex-wrap: wrap;
+margin-top: -30px;
+margin-left: -30px;
 }
 }
 .card-item{
-    @media screen and (min-width: 320px) {
-         width: 280px;
+@media screen and (max-width: 767px){
+    width: 280px;
          margin-right:auto;
          margin-left: auto;
-     }
-    @media screen and (min-width: 768px){
-    margin-left: 30px;
+}
+@media screen and (min-width: 768px){
+    flex-basis: calc(100% / 2 - 30px);
     margin-top: 30px;
-    flex-basis: calc(100% / 2 - 70px);
+    margin-left: 30px;
+    // margin-left: 0;
     }
-    @media screen and (min-width: 1024px){
-    margin-left: 30px;
-    margin-top: 30px;
-    flex-basis: calc(100% / 3 - 70px);
+@media screen and (min-width: 1024px){
+    flex-basis: calc(100% / 3 - 30px);
+    // margin-left: 0;
+    // &:nth-child(3n+3){margin-right: 0px;}
     }
 }
 .card-image{
     border-radius: 6px;
-    width: 293px;
-    height: 398px;
-    margin-right: 0;
 }
 .movie-title{
+    text-transform: uppercase;
     display: inline-block;
-    width: 293px;
     margin-top: 10px;
     margin-bottom: 5px;
     font-size: var(--font-size-main);
@@ -38,8 +37,14 @@
 }
 .genre{
     display: inline-block;
-    width: 293px;
     font-size: var(--font-size-main);
     font-weight: 500;
     color: var(--accent-color);
+}
+.genre-title span {
+    &:not(:last-of-type){
+        &::after {
+            content: ",";
+        }
+    }
 }

@@ -88,25 +88,25 @@ export default class FetchMovies {
   }
 
   async _fetchMostPopularMovies() {
-    const genres = await this._fetchGenresList();
-    const genresIds = genres.map(genre => genre.id)
-
     const {data} = await axios.get(
-      `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${this.lang}&page=${this.page}`,
+      `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${this.lang}&page=${this._popularMoviesPage}`,
     );
-
+    const genres = await this._fetchGenresList();
+    const genresIds = genres.map(genre => genre.id);
     const genresData = data.results.map(x => {
         return x.genre_ids.map(y => {
             return genres[genresIds.indexOf(y)].name
-        })
-    })
-
+        });
+    });
     data.results.forEach((el,i) => {
+        if(el.release_date) {
+          el.release_date = el.release_date.slice(0, 4)
+        }
         el.genre_ids = genresData[i]
     });
-
     return data;
   }
+
 
   async _fetchGenresList() {
     const genres = await axios.get(
