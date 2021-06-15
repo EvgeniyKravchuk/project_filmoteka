@@ -26,5 +26,5 @@ function onMovieCardClickWatched(watched) {
 }
 
 function renderMarcupForWotchedFilms(data) {
-  refs.main.insertAdjacentHTML('afterend', cardLibreryTpl(data));
+  refs.main.insertAdjacentHTML("beforeend", cardLibreryTpl(data));
 }
