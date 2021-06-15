@@ -7,7 +7,7 @@ const fetchMoviesNew = new fetchMovies();
 
 export default function (arrayWithFilnIdW, arrayWithFilnIdQ) {
   //прописать переменные с баттонами
-  console.log(arrayWithFilnIdW);
+  console.log();
   const ref = {
     buttonToW: document.querySelector('.js-watched'),
     buttonToQ: document.querySelector('.js-queue'),
@@ -74,6 +74,7 @@ export default function (arrayWithFilnIdW, arrayWithFilnIdQ) {
 
   // let watchedStr = JSON.stringify(indexOfElQArray);
   // localStorage.setItem('watched', watchedStr);
+
   //написать функцию кнопки watched по клику:
   //-если имя кнопки remove-удалить id, поменять название кнопки на add
   //переписать данные в локалсторедж
@@ -82,9 +83,6 @@ export default function (arrayWithFilnIdW, arrayWithFilnIdQ) {
   //поменять название кнопки на remove
   //переписать данные в локалсторедж
   //зарендерить карточку в либрери
-
-  // buttonToW.addEventListener('click', onMovieCardClickWatched);
-  // buttonToQ.addEventListener('click', onMovieCardClickQueue);
 
   // const classNameActive = 'modalBtnWat-active';
   // const labelAdd = 'Add to watched';
