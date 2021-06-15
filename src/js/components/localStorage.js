@@ -37,6 +37,7 @@ export default function () {
     switchNameButtonQueue(filmId);
     pushFilmIdQueue(filmId);
     localStorageIdSetToQueue();
+    // libreryRenderMarcup(queue);
   }
 
   //записать id и поменять название кнопки на remove

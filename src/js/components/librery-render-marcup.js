@@ -6,18 +6,30 @@ const refs = {
 
 const fetchMovies = new fetch();
 
-export default function (watched) {
+export default function (watched, queue) {
   onMovieCardClickWatched(watched);
+  onMovieCardClickQueue(queue);
 }
 
-export function  featchFilmsByIdWatched() {
+export function featchFilmsByIdWatched() {
   let watchedForRender = JSON.parse(localStorage.getItem(`watched`)) || [];
-  
-  watchedForRender.forEach(element =>  {
+
+  watchedForRender.forEach(element => {
     fetchMovies.getMovieDetaisById(element).then(response => {
-      renderMarcupForWotchedFilms(response)
-      console.log(response)
-    })
+      renderMarcupForWotchedFilms(response);
+      console.log(response);
+    });
+  });
+}
+
+export function featchFilmsByIdQueue() {
+  let queueForRender = JSON.parse(localStorage.getItem(`queue`)) || [];
+
+  queueForRender.forEach(element => {
+    fetchMovies.getMovieDetaisById(element).then(response => {
+      renderMarcupForQueueFilms(response);
+      console.log(response);
+    });
   });
 }
 
