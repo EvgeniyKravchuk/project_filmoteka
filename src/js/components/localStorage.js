@@ -9,7 +9,7 @@ const fetchMoviesNew = new fetchMovies();
 export default function () {
   //прописать переменные с баттонами
   console.log();
-  const ref = {
+  const refs = {
     buttonToW: document.querySelector('.js-watched'),
     buttonToQ: document.querySelector('.js-queue'),
     imageModal: document.querySelector('.modal-poster'),
@@ -21,18 +21,19 @@ export default function () {
   let indexOfElW = 0;
 
   //создать переменные для названия баттонов
-  // const classNameActive = 'modalBtnWat-active';
-  // const labelAddW = 'Add to watched';
-  // const labelRemoveW = 'Remove from watched';
-  // const labelAddQ = 'Add to watched';
-  // const labelRemoveQ = 'Remove from watched';
+  const classNameActive = 'modalBtnWat-active';
+  const labelAddW = 'Add to watched';
+  const labelRemoveW = 'Remove from watched';
+  const labelAddQ = 'Add to watched';
+  const labelRemoveQ = 'Remove from watched';
 
   //получить id при открытии модалки
+  getButtonOnLocalStorage();
 
   function onMovieCardClickWatched(evt) {
-    let filmId = ref.imageModal.dataset.id;
+    let filmId = refs.imageModal.dataset.id;
     // addFilmToWatched();
-
+    switchNameButtonWattced(filmId);
     pushFilmId(filmId);
     localStorageIdSetToWatched();
   }
@@ -51,35 +52,30 @@ export default function () {
   }
 
   function deleteFilmId(id) {
-    watched.forEach((element, i) => {
+    watched.forEach((element, index) => {
       if (element === id) {
-        watched.splice(i, 1);
+        watched.splice(index, 1);
       }
     });
   }
 
-  // function checkForBtn() {
-  //   watched.forEach((element, i) => {
-  //     if (element === filmId) {
-  //       console.log(element);
-  //       indexOfElW = i;
-  //     }
-  //   });
-  // }
-  // checkForBtn();
+  function switchNameButtonWattced() {
+    const buttonText = refs.buttonToW.textContent.toLowerCase().trim();
 
-  // function addFilmToWatched() {
-  //   if (!watched.includes(filmId)) {
-  //     watched.push(filmId);
-  //   } else {
-  //     watched.splice(indexOfElW, 1);
-  //   }
-  // }
+    if (buttonText === labelAddW.toLowerCase()) {
+      refs.buttonToW.textContent = labelRemoveW;
+    } else {
+      refs.buttonToW.textContent = labelAddW;
+    }
+  }
 
-  ref.buttonToW.addEventListener('click', onMovieCardClickWatched);
+  function getButtonOnLocalStorage() {
+    if (watched.includes(refs.imageModal.dataset.id)) {
+      refs.buttonToW.textContent = labelRemoveW;
+    }
+  }
 
-  // let watchedStr = JSON.stringify(indexOfElQArray);
-  // localStorage.setItem('watched', watchedStr);
+  refs.buttonToW.addEventListener('click', onMovieCardClickWatched);
 
   //написать функцию кнопки watched по клику:
   //-если имя кнопки remove-удалить id, поменять название кнопки на add

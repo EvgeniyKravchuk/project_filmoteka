@@ -63,11 +63,3 @@ function onBackdropEscClick(evt) {
     closeModal();
   }
 }
-//for LocalStorage
-// function createLocalStoregeArrays() {
-//   const arrayWithFilnId = [];
-//   const array = arrayWithFilnId;
-//   return array;
-// }
-
-// export default createLocalStoregeArrays;
