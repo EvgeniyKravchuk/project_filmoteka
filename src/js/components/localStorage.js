@@ -11,27 +11,41 @@ export default function () {
 
   //создать 2 хранилища локалСтореджа
   let watched = JSON.parse(localStorage.getItem(`watched`)) || [];
+  let queue = JSON.parse(localStorage.getItem(`queue`)) || [];
 
   const labelAddW = 'Add to watched';
   const labelRemoveW = 'Remove from watched';
-  const labelAddQ = 'Add to watched';
-  const labelRemoveQ = 'Remove from watched';
+  const labelAddQ = 'Add to queue';
+  const labelRemoveQ = 'Remove from queue';
 
   //получить id при открытии модалки
   getButtonOnLocalStorage();
+  getButtonQueueOnLocalStorage();
 
   function onMovieCardClickWatched(evt) {
     let filmId = refs.imageModal.dataset.id;
 
-    switchNameButtonWattced(filmId);
+    switchNameButtonWathced(filmId);
     pushFilmId(filmId);
     localStorageIdSetToWatched();
-    libreryRenderMarcup(watched);
+    // libreryRenderMarcup(watched);
+  }
+
+  function onMovieCardClickQueue(evt) {
+    let filmId = refs.imageModal.dataset.id;
+
+    switchNameButtonQueue(filmId);
+    pushFilmIdQueue(filmId);
+    localStorageIdSetToQueue();
+    // libreryRenderMarcup(queue);
   }
 
   //записать id и поменять название кнопки на remove
   function localStorageIdSetToWatched() {
     localStorage.setItem('watched', JSON.stringify(watched));
+  }
+  function localStorageIdSetToQueue() {
+    localStorage.setItem('queue', JSON.stringify(queue));
   }
 
   function pushFilmId(id) {
@@ -42,6 +56,14 @@ export default function () {
     }
   }
 
+  function pushFilmIdQueue(id) {
+    if (!queue.includes(id)) {
+      queue.push(id);
+    } else {
+      deleteFilmIdQueue(id);
+    }
+  }
+
   function deleteFilmId(id) {
     watched.forEach((element, index) => {
       if (element === id) {
@@ -49,8 +71,15 @@ export default function () {
       }
     });
   }
+  function deleteFilmIdQueue(id) {
+    queue.forEach((element, index) => {
+      if (element === id) {
+        queue.splice(index, 1);
+      }
+    });
+  }
 
-  function switchNameButtonWattced() {
+  function switchNameButtonWathced() {
     const buttonText = refs.buttonToW.textContent.toLowerCase().trim();
 
     if (buttonText === labelAddW.toLowerCase()) {
@@ -59,12 +88,27 @@ export default function () {
       refs.buttonToW.textContent = labelAddW;
     }
   }
+  function switchNameButtonQueue() {
+    const buttonText = refs.buttonToQ.textContent.toLowerCase().trim();
+
+    if (buttonText === labelAddQ.toLowerCase()) {
+      refs.buttonToQ.textContent = labelRemoveQ;
+    } else {
+      refs.buttonToQ.textContent = labelAddQ;
+    }
+  }
 
   function getButtonOnLocalStorage() {
     if (watched.includes(refs.imageModal.dataset.id)) {
       refs.buttonToW.textContent = labelRemoveW;
     }
   }
+  function getButtonQueueOnLocalStorage() {
+    if (queue.includes(refs.imageModal.dataset.id)) {
+      refs.buttonToQ.textContent = labelRemoveQ;
+    }
+  }
 
   refs.buttonToW.addEventListener('click', onMovieCardClickWatched);
+  refs.buttonToQ.addEventListener('click', onMovieCardClickQueue);
 }
