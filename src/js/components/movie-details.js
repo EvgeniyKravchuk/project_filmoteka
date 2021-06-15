@@ -1,6 +1,6 @@
 import modalTpl from '../../templates/modal.hbs';
 import FetchMovies from './Fetch-movies';
-import localeStorage from './localStorage';
+import localStorage from './localStorage.js';
 
 const fetchMovies = new FetchMovies();
 
@@ -32,7 +32,7 @@ function openModal(data) {
   backdropEvtListner = refs.backdrop.addEventListener('click', onBackdropClick);
   closeModalEscEvtListner = window.addEventListener('keydown', onBackdropEscClick);
   refs.body.classList.add('is-hidden');
-  localeStorage();
+  localStorage();
 }
 
 function closeModal() {

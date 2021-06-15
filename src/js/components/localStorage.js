@@ -1,99 +1,182 @@
+import fetchMovies from './Fetch-movies.js';
+import createLocalStoregeArrays from './movie-details';
+
+console.log(createLocalStoregeArrays);
+const fetchMoviesNew = new fetchMovies();
+
+// getMovieDetaisById(id)
+
 export default function () {
-  const buttonToW = document.querySelector('.js-watched');
-  const buttonToQ = document.querySelector('.js-queue');
+  //прописать переменные с баттонами
+  console.log();
+  const refs = {
+    buttonToW: document.querySelector('.js-watched'),
+    buttonToQ: document.querySelector('.js-queue'),
+    imageModal: document.querySelector('.modal-poster'),
+  };
 
-  buttonToW.addEventListener('click', onMovieCardClickWatched);
-  buttonToQ.addEventListener('click', onMovieCardClickQueue);
+  //создать 2 хранилища локалСтореджа
+  let watched = JSON.parse(localStorage.getItem(`watched`)) || [];
 
+  let indexOfElW = 0;
+
+  //создать переменные для названия баттонов
   const classNameActive = 'modalBtnWat-active';
-  const labelAdd = 'Add to watched';
-  const labelRemove = 'Remove from watched';
+  const labelAddW = 'Add to watched';
+  const labelRemoveW = 'Remove from watched';
+  const labelAddQ = 'Add to watched';
+  const labelRemoveQ = 'Remove from watched';
 
-  function onMovieCardClickWatched(e) {
-    idCardW();
+  //получить id при открытии модалки
+  getButtonOnLocalStorage();
 
-    console.log('clickW');
+  function onMovieCardClickWatched(evt) {
+    let filmId = refs.imageModal.dataset.id;
+    // addFilmToWatched();
+    switchNameButtonWattced(filmId);
+    pushFilmId(filmId);
+    localStorageIdSetToWatched();
   }
-  function onMovieCardClickQueue(e) {
-    idCardQ();
 
-    console.log('clickQ');
+  //записать id и поменять название кнопки на remove
+  function localStorageIdSetToWatched() {
+    localStorage.setItem('watched', JSON.stringify(watched));
   }
 
-  function idCardW(id) {
-    const { pushMoviesW, moviesW } = putMovieWatched('23');
-    if (pushMoviesW) {
-      buttonToW.classList.add(classNameActive);
-      buttonToW.textContent = labelRemove;
+  function pushFilmId(id) {
+    if (!watched.includes(id)) {
+      watched.push(id);
     } else {
-      buttonToW.classList.remove(classNameActive);
-      buttonToW.textContent = labelAdd;
+      deleteFilmId(id);
     }
   }
 
-  function idCardQ(id) {
-    const { pushMoviesQ, moviesQ } = putMovieQueue('30');
-    if (pushMoviesQ) {
-      buttonToQ.classList.add(classNameActive);
-      buttonToQ.textContent = labelRemove;
+  function deleteFilmId(id) {
+    watched.forEach((element, index) => {
+      if (element === id) {
+        watched.splice(index, 1);
+      }
+    });
+  }
+
+  function switchNameButtonWattced() {
+    const buttonText = refs.buttonToW.textContent.toLowerCase().trim();
+
+    if (buttonText === labelAddW.toLowerCase()) {
+      refs.buttonToW.textContent = labelRemoveW;
     } else {
-      buttonToQ.classList.remove(classNameActive);
-      buttonToQ.textContent = labelAdd;
+      refs.buttonToW.textContent = labelAddW;
     }
   }
 
-  const keyW = 'w';
-  const keyQ = 'q';
-
-  function getMovieWatched() {
-    const movieLocalStorageW = localStorage.getItem(keyW);
-
-    if (movieLocalStorageW !== null) {
-      return JSON.parse(movieLocalStorageW);
+  function getButtonOnLocalStorage() {
+    if (watched.includes(refs.imageModal.dataset.id)) {
+      refs.buttonToW.textContent = labelRemoveW;
     }
-    return [];
   }
 
-  function getMovieQueue() {
-    const movieLocalStorageQ = localStorage.getItem(keyQ);
+  refs.buttonToW.addEventListener('click', onMovieCardClickWatched);
 
-    if (movieLocalStorageQ !== null) {
-      return JSON.parse(movieLocalStorageQ);
-    }
-    return [];
-  }
+  //написать функцию кнопки watched по клику:
+  //-если имя кнопки remove-удалить id, поменять название кнопки на add
+  //переписать данные в локалсторедж
+  //зарендерить карточку в либрери
+  //или запушить id
+  //поменять название кнопки на remove
+  //переписать данные в локалсторедж
+  //зарендерить карточку в либрери
 
-  function putMovieWatched(id) {
-    let moviesW = getMovieWatched();
-    let pushMoviesW = false;
-    const index = moviesW.indexOf(id);
-
-    if (index === -1) {
-      moviesW.push(id);
-      pushMoviesW = true;
-    } else {
-      moviesW.splice(index, 1);
-    }
-
-    localStorage.setItem(keyW, JSON.stringify(moviesW));
-
-    return { pushMoviesW, moviesW };
-  }
-
-  function putMovieQueue(id) {
-    let moviesQ = getMovieQueue();
-    let pushMoviesQ = false;
-    const index = moviesQ.indexOf(id);
-
-    if (index === -1) {
-      moviesQ.push(id);
-      pushMoviesQ = true;
-    } else {
-      moviesQ.splice(index, 1);
-    }
-
-    localStorage.setItem(keyQ, JSON.stringify(moviesQ));
-
-    return { pushMoviesQ, moviesQ };
-  }
+  // const classNameActive = 'modalBtnWat-active';
+  // const labelAdd = 'Add to watched';
+  // const labelRemove = 'Remove from watched';
 }
+
+// import fetchMovies from './Fetch-movies.js';
+// import createLocalStoregeArrays from './movie-details';
+// console.log(createLocalStoregeArrays);
+// const fetchMoviesNew = new fetchMovies();
+
+// // getMovieDetaisById(id)
+
+// export default function (arrayWithFilnIdW, arrayWithFilnIdQ) {
+//   //прописать переменные с баттонами
+//   console.log();
+//   const ref = {
+//     buttonToW: document.querySelector('.js-watched'),
+//     buttonToQ: document.querySelector('.js-queue'),
+//     imageModal: document.querySelector('.modal-poster'),
+//   };
+
+//   //создать 2 хранилища локалСтореджа
+//   // let watched = localStorage.getItem(`watched`) || [];
+//   // let queue = localStorage.getItem(`queue`) || [];
+
+//   let indexOfElW = '';
+//   let indexOfElQ = '';
+
+//   //создать переменные для названия баттонов
+//   const classNameActive = 'modalBtnWat-active';
+//   const labelAddW = 'Add to watched';
+//   const labelRemoveW = 'Remove from watched';
+//   const labelAddQ = 'Add to watched';
+//   const labelRemoveQ = 'Remove from watched';
+
+//   //получить id при открытии модалки
+
+//   function onMovieCardClickWatched(evt) {
+//     indexOfElW = ref.imageModal.dataset.id;
+
+//     addFilmToWatched();
+//     localStorageIdSetToWatched();
+//   }
+
+//   function onMovieCardClickQueue(evt) {
+//     indexOfElQ = ref.imageModal.dataset.id;
+
+//     addFilmToQueue();
+//     localStorageIdSetToQueue();
+//   }
+
+//   //записать id и поменять название кнопки на remove
+//   function localStorageIdSetToWatched() {
+//     localStorage.setItem('watched', JSON.stringify(arrayWithFilnIdW));
+//   }
+
+//   function localStorageIdSetToQueue() {
+//     localStorage.setItem('queue', JSON.stringify(arrayWithFilnIdQ));
+//   }
+
+//   function addFilmToWatched() {
+//     if (arrayWithFilnIdW.includes(indexOfElW)) {
+//       return;
+//     } else {
+//       arrayWithFilnIdW.push(indexOfElW);
+//     }
+//   }
+
+//   function addFilmToQueue() {
+//     if (arrayWithFilnIdQ.includes(indexOfElQ)) {
+//       return;
+//     } else {
+//       arrayWithFilnIdQ.push(indexOfElQ);
+//     }
+//   }
+//   ref.buttonToW.addEventListener('click', onMovieCardClickWatched);
+//   ref.buttonToQ.addEventListener('click', onMovieCardClickQueue);
+
+//   // let watchedStr = JSON.stringify(indexOfElQArray);
+//   // localStorage.setItem('watched', watchedStr);
+
+//   //написать функцию кнопки watched по клику:
+//   //-если имя кнопки remove-удалить id, поменять название кнопки на add
+//   //переписать данные в локалсторедж
+//   //зарендерить карточку в либрери
+//   //или запушить id
+//   //поменять название кнопки на remove
+//   //переписать данные в локалсторедж
+//   //зарендерить карточку в либрери
+
+//   // const classNameActive = 'modalBtnWat-active';
+//   // const labelAdd = 'Add to watched';
+//   // const labelRemove = 'Remove from watched';
+// }
