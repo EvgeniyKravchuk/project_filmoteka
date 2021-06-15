@@ -14,8 +14,6 @@ const refs = {
 
 let backdropEvtListner = 0;
 let closeModalEscEvtListner = 0;
-const arrayWithFilnIdW = [];
-const arrayWithFilnIdQ = [];
 
 refs.jsContainer.addEventListener('click', onMovieCardClick);
 
@@ -34,7 +32,7 @@ function openModal(data) {
   backdropEvtListner = refs.backdrop.addEventListener('click', onBackdropClick);
   closeModalEscEvtListner = window.addEventListener('keydown', onBackdropEscClick);
   refs.body.classList.add('is-hidden');
-  localStorage(arrayWithFilnIdW, arrayWithFilnIdQ);
+  localStorage();
 }
 
 function closeModal() {
