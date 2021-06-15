@@ -9,4 +9,5 @@ import './js/components/theme-switcher';
 import './js/components/team-modal';
 import './js/components/server-answers/drop-down-list';
 import './js/components/localStorage';
-import './js/components/pagination-events'
+import './js/components/pagination-events';
+import './js/components/librery-render-marcup';
