@@ -53,3 +53,4 @@ function switchCurrentBtn(evt) {
     evt.currentTarget.classList.remove('current_btn');
   }
 }
+console.log('hi');
