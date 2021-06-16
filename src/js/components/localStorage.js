@@ -1,15 +1,12 @@
 import libreryRenderMarcup from './librery-render-marcup';
 
 export default function () {
-  //прописать переменные с баттонами
-
   const refs = {
     buttonToW: document.querySelector('.js-watched'),
     buttonToQ: document.querySelector('.js-queue'),
     imageModal: document.querySelector('.modal-poster'),
   };
 
-  //создать 2 хранилища локалСтореджа
   let watched = JSON.parse(localStorage.getItem(`watched`)) || [];
   let queue = JSON.parse(localStorage.getItem(`queue`)) || [];
 
@@ -18,7 +15,6 @@ export default function () {
   const labelAddQ = 'Add to queue';
   const labelRemoveQ = 'Remove from queue';
 
-  //получить id при открытии модалки
   getButtonOnLocalStorage();
   getButtonQueueOnLocalStorage();
 
@@ -40,7 +36,6 @@ export default function () {
     // libreryRenderMarcup(queue);
   }
 
-  //записать id и поменять название кнопки на remove
   function localStorageIdSetToWatched() {
     localStorage.setItem('watched', JSON.stringify(watched));
   }
