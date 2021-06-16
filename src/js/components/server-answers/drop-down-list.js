@@ -3,7 +3,6 @@ import FetchMovies from '../Fetch-movies';
 import debounce from 'lodash.debounce';
 import cardFilmTemlate from '../../../templates/singleCard.hbs';
 
-
 const refs = {
   mainInput: document.querySelector('.js_search_input'),
   queryError: document.querySelector('.error_text'),
@@ -18,9 +17,11 @@ function onInputChange(e) {
   refs.queryError.style.display = 'none';
   const searchQuery = e.target.value;
   refs.liveSearchContainer.innerHTML = '';
-  console.log(searchQuery);
   const movieName = searchQuery.trim();
 
+  if (searchQuery === '') {
+    return;
+  }
   return movieService
     .searchMovie(movieName)
     .then(renderListTitle)
@@ -51,7 +52,6 @@ function renderFilm(data) {
   const markup = cardFilmTemlate([data]);
   refs.mainContainer.innerHTML = '';
   refs.mainContainer.insertAdjacentHTML('beforeend', markup);
-
 }
 
 function clearList() {

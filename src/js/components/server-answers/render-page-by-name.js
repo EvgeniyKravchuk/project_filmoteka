@@ -10,6 +10,7 @@ const refs = {
   formInput: document.querySelector('form'),
   mainContainer: document.querySelector('.js_container'),
   queryError: document.querySelector('.error_text'),
+  liveSearchContainer: document.querySelector('.live-search-wrapper'),
 };
 refs.formInput.addEventListener('submit', onFormSubmit);
 
@@ -40,7 +41,7 @@ function onFormSubmit(event) {
       .then(renderPaginationBody)
       .then(() => {
         spinner.close();
-      })
+      }).then(() => refs.liveSearchContainer.innerHTML = '')
       .catch(onError);
 }
 
