@@ -24,11 +24,18 @@
     <a href="./library.html" class="nav_link current">MY LIBRARY</a>
     </nav>
     </div>
+    <div class="btn_div">
+  <button type="button" class="lib_btn js_btn_w current_btn">WATCHED</button>
+  <button type="button" class="lib_btn js_btn_q ">QUEUE</button>
+  </div>
   <include src="./partials/theme-switcher.html"></include>
 </div>
       </header>
+      <div class="main container js_container ">
+        <ul class="cards-list library-cards"></ul>
+    </div>
     <!--🍅Тут подключаем части HTML (паршалы):-->
-    <include src="./partials/main.html"></include>
+
     <include src="./partials/footer.html"></include>
     <include src="./partials/team-modal.html"></include>
     <!-- 🍅Наш JS -->

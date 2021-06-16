@@ -28,7 +28,8 @@
     .search_form {
       position: relative;
       display: flex;
-      justify-content: center;
+      align-items: center;
+      justify-content: center;  
     }
     .s_form_input {
       width: 50%;
@@ -93,6 +94,7 @@
     color: var(--p-dark-t-color);
     border-bottom: 1px solid var(--p-dark-t-color);
     margin-bottom: 4px;
+    border: none;
   }
   &:focus,
   :hover {

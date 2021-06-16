@@ -1,99 +1,109 @@
+import libreryRenderMarcup from './librery-render-marcup';
+
 export default function () {
-  const buttonToW = document.querySelector('.js-watched');
-  const buttonToQ = document.querySelector('.js-queue');
+  const refs = {
+    buttonToW: document.querySelector('.js-watched'),
+    buttonToQ: document.querySelector('.js-queue'),
+    imageModal: document.querySelector('.modal-poster'),
+  };
 
-  buttonToW.addEventListener('click', onMovieCardClickWatched);
-  buttonToQ.addEventListener('click', onMovieCardClickQueue);
+  let watched = JSON.parse(localStorage.getItem(`watched`)) || [];
+  let queue = JSON.parse(localStorage.getItem(`queue`)) || [];
 
-  const classNameActive = 'modalBtnWat-active';
-  const labelAdd = 'Add to watched';
-  const labelRemove = 'Remove from watched';
+  const labelAddW = 'Add to watched';
+  const labelRemoveW = 'Remove from watched';
+  const labelAddQ = 'Add to queue';
+  const labelRemoveQ = 'Remove from queue';
 
-  function onMovieCardClickWatched(e) {
-    idCardW();
+  getButtonOnLocalStorage();
+  getButtonQueueOnLocalStorage();
 
-    console.log('clickW');
+  function onMovieCardClickWatched(evt) {
+    let filmId = refs.imageModal.dataset.id;
+
+    switchNameButtonWathced(filmId);
+    pushFilmId(filmId);
+    localStorageIdSetToWatched();
+    // libreryRenderMarcup(watched);
   }
-  function onMovieCardClickQueue(e) {
-    idCardQ();
 
-    console.log('clickQ');
+  function onMovieCardClickQueue(evt) {
+    let filmId = refs.imageModal.dataset.id;
+
+    switchNameButtonQueue(filmId);
+    pushFilmIdQueue(filmId);
+    localStorageIdSetToQueue();
+    // libreryRenderMarcup(queue);
   }
 
-  function idCardW(id) {
-    const { pushMoviesW, moviesW } = putMovieWatched('23');
-    if (pushMoviesW) {
-      buttonToW.classList.add(classNameActive);
-      buttonToW.textContent = labelRemove;
+  function localStorageIdSetToWatched() {
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }
+  function localStorageIdSetToQueue() {
+    localStorage.setItem('queue', JSON.stringify(queue));
+  }
+
+  function pushFilmId(id) {
+    if (!watched.includes(id)) {
+      watched.push(id);
     } else {
-      buttonToW.classList.remove(classNameActive);
-      buttonToW.textContent = labelAdd;
+      deleteFilmId(id);
     }
   }
 
-  function idCardQ(id) {
-    const { pushMoviesQ, moviesQ } = putMovieQueue('30');
-    if (pushMoviesQ) {
-      buttonToQ.classList.add(classNameActive);
-      buttonToQ.textContent = labelRemove;
+  function pushFilmIdQueue(id) {
+    if (!queue.includes(id)) {
+      queue.push(id);
     } else {
-      buttonToQ.classList.remove(classNameActive);
-      buttonToQ.textContent = labelAdd;
+      deleteFilmIdQueue(id);
     }
   }
 
-  const keyW = 'w';
-  const keyQ = 'q';
-
-  function getMovieWatched() {
-    const movieLocalStorageW = localStorage.getItem(keyW);
-
-    if (movieLocalStorageW !== null) {
-      return JSON.parse(movieLocalStorageW);
-    }
-    return [];
+  function deleteFilmId(id) {
+    watched.forEach((element, index) => {
+      if (element === id) {
+        watched.splice(index, 1);
+      }
+    });
+  }
+  function deleteFilmIdQueue(id) {
+    queue.forEach((element, index) => {
+      if (element === id) {
+        queue.splice(index, 1);
+      }
+    });
   }
 
-  function getMovieQueue() {
-    const movieLocalStorageQ = localStorage.getItem(keyQ);
+  function switchNameButtonWathced() {
+    const buttonText = refs.buttonToW.textContent.toLowerCase().trim();
 
-    if (movieLocalStorageQ !== null) {
-      return JSON.parse(movieLocalStorageQ);
-    }
-    return [];
-  }
-
-  function putMovieWatched(id) {
-    let moviesW = getMovieWatched();
-    let pushMoviesW = false;
-    const index = moviesW.indexOf(id);
-
-    if (index === -1) {
-      moviesW.push(id);
-      pushMoviesW = true;
+    if (buttonText === labelAddW.toLowerCase()) {
+      refs.buttonToW.textContent = labelRemoveW;
     } else {
-      moviesW.splice(index, 1);
+      refs.buttonToW.textContent = labelAddW;
     }
-
-    localStorage.setItem(keyW, JSON.stringify(moviesW));
-
-    return { pushMoviesW, moviesW };
   }
+  function switchNameButtonQueue() {
+    const buttonText = refs.buttonToQ.textContent.toLowerCase().trim();
 
-  function putMovieQueue(id) {
-    let moviesQ = getMovieQueue();
-    let pushMoviesQ = false;
-    const index = moviesQ.indexOf(id);
-
-    if (index === -1) {
-      moviesQ.push(id);
-      pushMoviesQ = true;
+    if (buttonText === labelAddQ.toLowerCase()) {
+      refs.buttonToQ.textContent = labelRemoveQ;
     } else {
-      moviesQ.splice(index, 1);
+      refs.buttonToQ.textContent = labelAddQ;
     }
-
-    localStorage.setItem(keyQ, JSON.stringify(moviesQ));
-
-    return { pushMoviesQ, moviesQ };
   }
+
+  function getButtonOnLocalStorage() {
+    if (watched.includes(refs.imageModal.dataset.id)) {
+      refs.buttonToW.textContent = labelRemoveW;
+    }
+  }
+  function getButtonQueueOnLocalStorage() {
+    if (queue.includes(refs.imageModal.dataset.id)) {
+      refs.buttonToQ.textContent = labelRemoveQ;
+    }
+  }
+
+  refs.buttonToW.addEventListener('click', onMovieCardClickWatched);
+  refs.buttonToQ.addEventListener('click', onMovieCardClickQueue);
 }
