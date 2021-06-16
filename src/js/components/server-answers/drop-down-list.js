@@ -57,3 +57,5 @@ function renderFilm(data) {
 function clearList() {
   refs.liveSearchContainer.innerHTML = '';
 }
+
+
