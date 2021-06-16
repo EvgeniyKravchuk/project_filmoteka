@@ -7,6 +7,9 @@ import './js/components/team-modal';
 import './js/components/librery-render-marcup';
 import './js/components/librery-gallery-filter';
 import { featchFilmsByIdWatched } from './js/components/librery-render-marcup';
-import { featchFilmsByIdQueue } from './js/components/librery-render-marcup';
-featchFilmsByIdWatched();
-featchFilmsByIdQueue();
+
+if (localStorage.getItem('activeButton') === 'queue') {
+  return;
+} else {
+  featchFilmsByIdWatched();
+}

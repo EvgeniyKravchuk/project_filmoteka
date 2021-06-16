@@ -1,7 +1,20 @@
+import { featchFilmsByIdWatched, featchFilmsByIdQueue } from './librery-render-marcup';
+
 const refs = {
   watchedBtn: document.querySelector('.js_btn_w'),
   queueBtn: document.querySelector('.js_btn_q'),
+  cardsList: document.querySelector('.library-cards'),
 };
+
+const watched = JSON.parse(localStorage.getItem(`watched`));
+const queue = JSON.parse(localStorage.getItem(`queue`));
+
+if (localStorage.getItem('activeButton') === 'queue') {
+  refs.cardsList.innerHTML = '';
+  featchFilmsByIdQueue(queue);
+  refs.queueBtn.classList.add('current_btn');
+  refs.watchedBtn.classList.remove('current_btn');
+}
 
 refs.watchedBtn.addEventListener('click', sortFilmsForWatched);
 refs.queueBtn.addEventListener('click', sortFilmsForQueue);
@@ -12,6 +25,9 @@ function sortFilmsForWatched(evt) {
   } else if (refs.queueBtn.classList.contains('current_btn')) {
     refs.queueBtn.classList.remove('current_btn');
     switchCurrentBtn(evt);
+    refs.cardsList.innerHTML = '';
+    featchFilmsByIdWatched(watched);
+    localStorage.setItem('activeButton', 'watched');
   }
 }
 
@@ -21,6 +37,9 @@ function sortFilmsForQueue(evt) {
   } else {
     switchCurrentBtn(evt);
     refs.watchedBtn.classList.remove('current_btn');
+    refs.cardsList.innerHTML = '';
+    featchFilmsByIdQueue(queue);
+    localStorage.setItem('activeButton', 'queue');
   }
 }
 
