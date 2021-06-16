@@ -1,8 +1,10 @@
 import FetchMovies from '../Fetch-movies';
 import renderPage from './render-page-func';
 import { spinner } from './preloader';
+import renderPaginationBody from '../pagination'
 
 const movieService = new FetchMovies();
+
 
 const refs = {
   formInput: document.querySelector('form'),
@@ -30,7 +32,12 @@ function onFormSubmit(event) {
   }
     return movieService
       .searchMovie(movieName)
-      .then(renderPageByName)
+      .then(data => {
+        renderPageByName(data);
+        localStorage.setItem('pageType', 'byName')
+        return data;
+      })
+      .then(renderPaginationBody)
       .then(() => {
         spinner.close();
       })

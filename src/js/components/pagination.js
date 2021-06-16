@@ -7,10 +7,29 @@ export default function renderPaginationBody(data) {
   const totalPages = data.total_pages;
   const markupContainer = refs.markupContainer;
 
+  const navRef = document.querySelector('.pagination-nav')
   const itemsRef = markupContainer.querySelectorAll('.pagination-item');
   const itemTotalRef = markupContainer.querySelector('.item-total');
   const itemsDotsFirstRef = markupContainer.querySelector('.item-dots-first');
   const itemsDotsLastRef = markupContainer.querySelector('.item-dots-last');
+  const leftArrowRef = document.querySelector('.pagination-prev');
+  const rightArrowRef = document.querySelector('.pagination-next');
+
+  if(currPage === 1) {
+    leftArrowRef.hidden = true
+    rightArrowRef.hidden = false
+  }
+
+  
+  if(currPage === totalPages) {
+    leftArrowRef.hidden = false
+    rightArrowRef.hidden = true
+  }
+
+  if(currPage !== 1 && currPage !== totalPages) {
+    leftArrowRef.hidden = false
+    rightArrowRef.hidden = false
+  }
 
   if (currPage > 0 && currPage < 5) {
     itemsDotsFirstRef.hidden = true;

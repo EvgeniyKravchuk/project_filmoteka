@@ -15,6 +15,7 @@ window.onload = function () {
     .fetchMainPopularMovies()
     .then(data => {
       renderPage(data);
+      localStorage.setItem('pageType', 'default')
       return data;
     })
     .then(renderPaginationBody)

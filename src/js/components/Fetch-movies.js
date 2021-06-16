@@ -12,57 +12,58 @@ export default class FetchMovies {
     this.adult = false;
   }
 
-  fetchMainPopularMovies() {
+  async fetchMainPopularMovies() {
     this._popularMoviesPage = 1;
-    const res = this._fetchMostPopularMovies();
-    this._popularMoviesPage += 1;
+    const res = await this._fetchMostPopularMovies();
     return res;
   }
 
-  fetchNextPopularMovies() {
-    const res = this._fetchMostPopularMovies();
+  async fetchNextPopularMovies() {
     this._popularMoviesPage += 1;
+    const res = await this._fetchMostPopularMovies();
     return res;
   }
 
-  fetchPrevPopularMovies() {
-    this._popularMoviesPage -= 2;
-    const res = this._fetchMostPopularMovies();
-    this._popularMoviesPage += 1;
+  async fetchPrevPopularMovies() {
+    this._popularMoviesPage -= 1;
+    const res = await this._fetchMostPopularMovies();
     return res;
   }
 
-  fetchCertainPopularMoviesPage(numberOfPage) {
+  async fetchCertainPopularMoviesPage(numberOfPage) {
     this._popularMoviesPage = numberOfPage;
-    const res = this._fetchMostPopularMovies();
+    const res = await this._fetchMostPopularMovies();
     this._popularMoviesPage += 1;
     return res;
   }
 
-  searchMovie(movieName) {
+  async searchMovie(movieName) {
     this._queryByNamePage = 1;
-    const res = this._fetchMovieByName(movieName);
-    this._queryByNamePage += 1;
+    this._searchQuery = movieName;
+    localStorage.setItem('searchQuery', movieName);
+    const res = await this._fetchMovieByName(movieName);
+
     return res;
   }
 
-  nextSearchedMoviePage() {
-    const res = this._fetchMovieByName(this._searchQuery);
-    this._queryByNamePage += 1;
+  async nextSearchedMoviePage() {
+    this._searchQuery = localStorage.getItem('searchQuery');
+    this._queryByNamePage++;
+    const res = await this._fetchMovieByName(this._searchQuery);
     return res;
   }
 
-  certainSearchedMoviePage(numberOfPage) {
+  async certainSearchedMoviePage(numberOfPage) {
+    this._searchQuery = localStorage.getItem('searchQuery');
     this._queryByNamePage = numberOfPage;
-    const res = this._fetchMovieByName(this._searchQuery);
-    this._queryByNamePage += 1;
+    const res = await this._fetchMovieByName(this._searchQuery);
     return res;
   }
 
-  prevSearchedMoviePage() {
-    this._queryByNamePage -= 2;
-    const res = this._fetchMovieByName(this._searchQuery);
-    this._queryByNamePage += 1;
+  async prevSearchedMoviePage() {
+    this._searchQuery = localStorage.getItem('searchQuery');
+    this._queryByNamePage--;
+    const res = await this._fetchMovieByName(this._searchQuery);
     return res;
   }
 
@@ -75,16 +76,15 @@ export default class FetchMovies {
   }
 
   async getMovieDetaisById(id) {
-    const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${this.lang}`);
-    return res.data;
+    const {data} = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${this.lang}`);
+    return data;
   }
 
-  async _fetchMovieByName(query) {
-    this._searchQuery = query;
-    const res = await axios.get(
+  async _fetchMovieByName() {
+    const {data} = await axios.get(
       `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${this._searchQuery}&language=${this.lang}&page=${this._queryByNamePage}&include_adult=${this.adult}`,
     );
-    return res.data;
+    return data;
   }
 
   async _fetchMostPopularMovies() {
