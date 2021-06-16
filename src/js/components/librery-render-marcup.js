@@ -1,5 +1,6 @@
 import fetch from './Fetch-movies.js';
 import cardLibreryTpl from '../../templates/cardLibrary.hbs';
+
 const refs = {
   main: document.querySelector('.library-cards'),
 };
@@ -17,7 +18,6 @@ export function featchFilmsByIdWatched() {
   watchedForRender.forEach(element => {
     fetchMovies.getMovieDetaisById(element).then(response => {
       renderMarcupForWotchedFilms(response);
-      console.log(response);
     });
   });
 }
@@ -28,7 +28,6 @@ export function featchFilmsByIdQueue() {
   queueForRender.forEach(element => {
     fetchMovies.getMovieDetaisById(element).then(response => {
       renderMarcupForQueueFilms(response);
-      console.log(response);
     });
   });
 }
@@ -36,7 +35,13 @@ export function featchFilmsByIdQueue() {
 function onMovieCardClickWatched(watched) {
   watched = JSON.parse(localStorage.getItem(`watched`));
 }
+function onMovieCardClickQueue(queue) {
+  queue = JSON.parse(localStorage.getItem(`queue`));
+}
 
 function renderMarcupForWotchedFilms(data) {
-  refs.main.insertAdjacentHTML("beforeend", cardLibreryTpl(data));
+  refs.main.insertAdjacentHTML('beforeend', cardLibreryTpl(data));
+}
+function renderMarcupForQueueFilms(data) {
+  refs.main.insertAdjacentHTML('beforeend', cardLibreryTpl(data));
 }
