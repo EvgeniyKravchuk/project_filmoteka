@@ -30,7 +30,7 @@ function onInputChange(e) {
 
 function renderListTitle(body) {
   const markup = cardListTemplate(body.results);
-  refs.liveSearchContainer.insertAdjacentHTML('beforeend', markup);
+  refs.liveSearchContainer.insertAdjacentHTML('beforeend', markup); 
 }
 
 refs.liveSearchContainer.addEventListener('click', onDropDownListClick);
@@ -44,6 +44,7 @@ function onDropDownListClick(event) {
     .getMovieDetaisById(filmId)
     .then(renderFilm)
     .then(clearList)
+    .then( () => refs.mainInput.value = "")
     .catch(error => console.log(error));
 }
 

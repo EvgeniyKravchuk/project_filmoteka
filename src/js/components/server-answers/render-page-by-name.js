@@ -11,6 +11,7 @@ const refs = {
   mainContainer: document.querySelector('.js_container'),
   queryError: document.querySelector('.error_text'),
   liveSearchContainer: document.querySelector('.live-search-wrapper'),
+  mainInput: document.querySelector('.js_search_input'),
 };
 refs.formInput.addEventListener('submit', onFormSubmit);
 
@@ -42,6 +43,7 @@ function onFormSubmit(event) {
       .then(() => {
         spinner.close();
       }).then(() => refs.liveSearchContainer.innerHTML = '')
+      .then( () => refs.mainInput.value = "")
       .catch(onError);
 }
 
