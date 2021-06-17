@@ -10,6 +10,8 @@
       background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
         url(../images/header/header_m_x2.jpg);
     }
+    background-repeat: no-repeat;
+    background-size: cover;
     .s_form_input {
       display: inline-flex;
       width: 99%;
@@ -33,7 +35,7 @@
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;  
+      justify-content: center;
     }
     .s_form_input {
       width: 50%;
@@ -179,6 +181,4 @@
         url(../images/header/lib_d_x2.jpg);
     }
   }
-  background-repeat: no-repeat;
-  background-size: cover;
 }
