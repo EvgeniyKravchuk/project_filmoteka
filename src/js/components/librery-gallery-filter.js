@@ -78,7 +78,7 @@ function deleteCardsFromLibrary(evt) {
     localStorageIdSetToQueue();
     // featchFilmsByIdQueue(queue);
 
-    document.location.reload();
+    // document.location.reload();
   } else {
     return;
   }
