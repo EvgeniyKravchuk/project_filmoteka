@@ -84,3 +84,22 @@ ul.team-list {
   padding: 0;
   margin: 0;
 }
+.modal-team-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  background-color: var(--p-dark-t-color);
+
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.close-button-team-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

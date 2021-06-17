@@ -8,6 +8,7 @@
 }
 .card-item {
   cursor: pointer;
+  transition: 0.5s linear;
   @media screen and (max-width: 767px) {
     width: 280px;
     margin-right: auto;
@@ -25,6 +26,11 @@
     // margin-left: 0;
     // &:nth-child(3n+3){margin-right: 0px;}
   }
+}
+.card-item:hover,
+.card-item:focus {
+  transform: scale(1.05);
+  box-shadow: 4px 3px 12px -1px rgba(207, 205, 197, 0.5);
 }
 .card-image {
   border-radius: 6px;
