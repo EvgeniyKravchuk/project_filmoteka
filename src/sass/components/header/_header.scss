@@ -3,13 +3,19 @@
 @import './theme-switcher';
 .header {
   height: 230px;
-  @media screen and (max-width: 320px) {
-    background: url(../images/header/header_m_x1.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
-    background-repeat:no-repeat;
+  @media screen and(max-width: 320px){
+    background:url(../images/header/header_m_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/header_m_x2.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
-      background-repeat:no-repeat;
+      background:url(../images/header/header_m_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
+  }
+  @media screen and (max-width:768px){
+    background:url(../images/header/header_t_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+    @media screen and (min-resolution: 2dppx) {
+      background:url(../images/header/header_t_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+    }
+  }
+  @media screen and (min-width: 320px) {
     .s_form_input {
       display: inline-flex;
       width: 99%;
@@ -17,18 +23,11 @@
     .search_pic {
       margin-left: -22px;
     }
-
     .search_form {
       position: relative;
     }
   }
-  @media screen and(min-width: 321px) and (max-width: 768px) {
-    background:url(../images/header/header_t_x1.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
-    background-repeat:no-repeat;
-    @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/header_t_x2.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
-      background-repeat:no-repeat;
-    }
+  @media screen and (min-width: 768px) {
     .search_form {
       position: relative;
       display: flex;
@@ -39,14 +38,13 @@
       width: 50%;
     }
   }
-  @media screen and (min-width: 769px) {
-    background:url(../images/header/header_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56) ;
+  @media screen and (min-width:769px ) {
+    background:url(../images/header/header_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/header_d_x2.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background:url(../images/header/header_d_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
 }
-
 .nav_list {
   display: flex;
   align-items: baseline;
@@ -152,7 +150,6 @@
   background-color: var(--accent-color);
   border: transparent;
 }
-
 .library {
   @media screen and (max-width: 320px) {
     background:url(../images/header/lib_m_x1.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
