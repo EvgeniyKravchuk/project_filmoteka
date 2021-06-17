@@ -1,53 +1,81 @@
-.cards-list{
-@media screen and (min-width: 768px){
-display: flex;
-flex-wrap: wrap;
-margin-top: -30px;
-margin-left: -30px;
+.cards-list {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -30px;
+    margin-left: -30px;
+  }
 }
-}
-.card-item{
-    cursor: pointer;
-@media screen and (max-width: 767px){
+.card-item {
+  cursor: pointer;
+  @media screen and (max-width: 767px) {
     width: 280px;
-         margin-right:auto;
-         margin-left: auto;
-         margin-top: 20px;
-}
-@media screen and (min-width: 768px){
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 768px) {
     flex-basis: calc(100% / 2 - 30px);
     margin-top: 30px;
     margin-left: 30px;
     // margin-left: 0;
-    }
-@media screen and (min-width: 1024px){
+  }
+  @media screen and (min-width: 1024px) {
     flex-basis: calc(100% / 3 - 30px);
     // margin-left: 0;
     // &:nth-child(3n+3){margin-right: 0px;}
-    }
+  }
 }
-.card-image{
-    border-radius: 6px;
+.card-image {
+  border-radius: 6px;
 }
-.movie-title{
-    display: block;
-    text-transform: uppercase;
-    // display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: var(--font-size-main);
-    font-weight: 500;
+.movie-title {
+  display: block;
+  text-transform: uppercase;
+  // display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: var(--font-size-main);
+  font-weight: 500;
 }
-.genre{
-    display: inline-block;
-    font-size: var(--font-size-main);
-    font-weight: 500;
-    color: var(--accent-color);
+.genre {
+  display: inline-block;
+  font-size: var(--font-size-main);
+  font-weight: 500;
+  color: var(--accent-color);
 }
 .genre-title span {
-    &:not(:last-of-type){
-        &::after {
-            content: ",";
-        }
+  &:not(:last-of-type) {
+    &::after {
+      content: ',';
     }
+  }
+}
+
+.film-overlay-remove {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(100%);
+  background: url(../images/1485477104-basket_78591.png), rgba(91, 92, 94, 0.9);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-size: auto;
+  //   background: rgba(91, 92, 94, 0.9);
+}
+
+.library-cards .card-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.library-cards .card-item:hover .film-overlay-remove,
+.library-cards .card-item:focus .film-overlay-remove {
+  transform: translateY(0%);
 }
