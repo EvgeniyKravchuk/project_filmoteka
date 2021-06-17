@@ -4,6 +4,7 @@ const refs = {
   watchedBtn: document.querySelector('.js_btn_w'),
   queueBtn: document.querySelector('.js_btn_q'),
   cardsList: document.querySelector('.library-cards'),
+  main: document.querySelector('.js_container'),
 };
 
 const watched = JSON.parse(localStorage.getItem(`watched`));
@@ -52,4 +53,56 @@ function switchCurrentBtn(evt) {
   } else {
     evt.currentTarget.classList.remove('current_btn');
   }
+}
+
+////delete cards
+
+refs.main.addEventListener('click', deleteCardsFromLibrary);
+
+function deleteCardsFromLibrary(evt) {
+  const cardRef = evt.target.closest('.card-item');
+
+  console.log(cardRef);
+  if (cardRef && localStorage.getItem('activeButton') === 'watched') {
+    console.log('click', evt.target);
+    let imageId = cardRef.querySelector('.card-image').dataset.id;
+    deleteFilmId(imageId);
+    localStorageIdSetToWatched();
+    // featchFilmsByIdWatched(watched);
+
+    // document.location.reload();
+  } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
+    let imageId = cardRef.querySelector('.card-image').dataset.id;
+    // console.log('click', imageId);
+    deleteFilmIdQueue(imageId);
+    localStorageIdSetToQueue();
+    // featchFilmsByIdQueue(queue);
+
+    // document.location.reload();
+  } else {
+    return;
+  }
+}
+
+function deleteFilmId(id) {
+  watched.forEach((element, index) => {
+    if (element === id) {
+      watched.splice(index, 1);
+    }
+  });
+}
+
+function deleteFilmIdQueue(id) {
+  queue.forEach((element, index) => {
+    if (element === id) {
+      queue.splice(index, 1);
+    }
+  });
+}
+
+function localStorageIdSetToWatched() {
+  localStorage.setItem('watched', JSON.stringify(watched));
+}
+function localStorageIdSetToQueue() {
+  localStorage.setItem('queue', JSON.stringify(queue));
 }
