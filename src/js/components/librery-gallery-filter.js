@@ -63,9 +63,8 @@ function deleteCardsFromLibrary(evt) {
   const cardRef = evt.target.closest('.card-item');
 
   if (cardRef && localStorage.getItem('activeButton') === 'watched') {
-    console.log('click', evt.target);
-
     let imageId = cardRef.querySelector('.card-image').dataset.id;
+
     deleteFilmId(imageId);
     localStorageIdSetToWatched();
 
@@ -77,14 +76,20 @@ function deleteCardsFromLibrary(evt) {
     } else {
       cardRef.classList.add('open');
     }
-
-    // document.location.reload();
   } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
-    // console.log('click', imageId);
+
     deleteFilmIdQueue(imageId);
     localStorageIdSetToQueue();
-    cardRef.remove();
+
+    if (document.documentElement.clientWidth > 1024) {
+      cardRef.remove();
+    } else if (cardRef.classList.contains('open')) {
+      cardRef.classList.remove('open');
+      cardRef.remove();
+    } else {
+      cardRef.classList.add('open');
+    }
 
     // document.location.reload();
   } else {
