@@ -53,3 +53,51 @@ function switchCurrentBtn(evt) {
     evt.currentTarget.classList.remove('current_btn');
   }
 }
+
+////delete cards
+
+refs.cardsList.addEventListener('click', deleteCardsFromLibrary);
+
+function deleteCardsFromLibrary(evt) {
+  const cardRef = evt.target.closest('.card-item');
+  let imageId = cardRef.querySelector('.card-image').dataset.id;
+
+  if (cardRef && localStorage.getItem('activeButton') === 'watched') {
+    deleteFilmId(imageId);
+    localStorageIdSetToWatched();
+    featchFilmsByIdWatched(watched);
+
+    document.location.reload();
+  } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
+    deleteFilmIdQueue(imageId);
+    localStorageIdSetToQueue();
+    featchFilmsByIdQueue(queue);
+
+    document.location.reload();
+  } else {
+    return;
+  }
+}
+
+function deleteFilmId(id) {
+  watched.forEach((element, index) => {
+    if (element === id) {
+      watched.splice(index, 1);
+    }
+  });
+}
+
+function deleteFilmIdQueue(id) {
+  queue.forEach((element, index) => {
+    if (element === id) {
+      queue.splice(index, 1);
+    }
+  });
+}
+
+function localStorageIdSetToWatched() {
+  localStorage.setItem('watched', JSON.stringify(watched));
+}
+function localStorageIdSetToQueue() {
+  localStorage.setItem('queue', JSON.stringify(queue));
+}
