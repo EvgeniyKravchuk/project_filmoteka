@@ -1,14 +1,28 @@
 import { featchFilmsByIdWatched, featchFilmsByIdQueue } from './librery-render-marcup';
+import modalTpl from '../../templates/modal.hbs';
+import { spinner } from '../../js/components/server-answers/preloader';
+import FetchMovies from './Fetch-movies';
+import local from './localStorage.js';
+
+const fetchMovies = new FetchMovies();
 
 const refs = {
   watchedBtn: document.querySelector('.js_btn_w'),
   queueBtn: document.querySelector('.js_btn_q'),
   cardsList: document.querySelector('.library-cards'),
   main: document.querySelector('.js_container'),
+  backdrop: document.querySelector('.backdrop'),
+  modal: document.querySelector('.modal-container'),
+  closeModalBtn: document.querySelector('.modal-close-btn'),
+  body: document.querySelector('.js-body'),
 };
 
 const watched = JSON.parse(localStorage.getItem(`watched`));
 const queue = JSON.parse(localStorage.getItem(`queue`));
+
+let backdropEvtListner = 0;
+let closeModalEscEvtListner = 0;
+let cardRefForDelete;
 
 if (localStorage.getItem('activeButton') === 'queue') {
   refs.cardsList.innerHTML = '';
@@ -55,69 +69,86 @@ function switchCurrentBtn(evt) {
   }
 }
 
-////delete cards
+////💀 ON CARD CLICK (FOR MODAL)
 
 refs.main.addEventListener('click', deleteCardsFromLibrary);
 
 function deleteCardsFromLibrary(evt) {
   const cardRef = evt.target.closest('.card-item');
+  cardRefForDelete = cardRef;
 
   if (cardRef && localStorage.getItem('activeButton') === 'watched') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
 
-    localStorageIdSetToWatched();
+    refs.backdrop.classList.add('is-open');
 
-    if (document.documentElement.clientWidth > 1024) {
-      deleteFilmId(imageId);
-      cardRef.remove();
-    } else if (cardRef.classList.contains('open')) {
-      cardRef.classList.remove('open');
-      cardRef.remove();
-      deleteFilmId(imageId);
-    } else {
-      cardRef.classList.add('open');
-    }
+    openModalOnClick(imageId);
   } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
 
-    localStorageIdSetToQueue();
+    refs.backdrop.classList.add('is-open');
 
-    if (document.documentElement.clientWidth > 1024) {
-      deleteFilmId(imageId);
-      cardRef.remove();
-    } else if (cardRef.classList.contains('open')) {
-      cardRef.classList.remove('open');
-      cardRef.remove();
-      deleteFilmId(imageId);
-    } else {
-      cardRef.classList.add('open');
-    }
-
-    // document.location.reload();
+    openModalOnClick(imageId);
   } else {
     return;
   }
 }
 
-function deleteFilmId(id) {
-  watched.forEach((element, index) => {
-    if (element === id) {
-      watched.splice(index, 1);
-    }
-  });
+function openModalOnClick(id) {
+  fetchMovies.getMovieDetaisById(id).then(openModal).catch(console.log);
 }
 
-function deleteFilmIdQueue(id) {
-  queue.forEach((element, index) => {
-    if (element === id) {
-      queue.splice(index, 1);
-    }
-  });
+function openModal(data) {
+  refs.modal.innerHTML = modalTpl(data);
+  backdropEvtListner = refs.backdrop.addEventListener('click', onBackdropClick);
+  closeModalEscEvtListner = window.addEventListener('keydown', onBackdropEscClick);
+  refs.body.classList.add('is-hidden');
+  local();
 }
 
-function localStorageIdSetToWatched() {
-  localStorage.setItem('watched', JSON.stringify(watched));
+function closeModal() {
+  refs.backdrop.removeEventListener('click', backdropEvtListner);
+  window.removeEventListener('keydown', closeModalEscEvtListner);
+  refs.backdrop.classList.remove('is-open');
+  refs.body.classList.remove('is-hidden');
+  refs.modal.innerHTML = '';
 }
-function localStorageIdSetToQueue() {
-  localStorage.setItem('queue', JSON.stringify(queue));
+
+function onBackdropClick(evt) {
+  const nodeName = evt.target.nodeName;
+  const classList = evt.target.classList;
+  const watchedButton = evt.target.closest('.js-watched');
+  const queueButton = evt.target.closest('.js-queue');
+
+  if (
+    (nodeName === 'DIV' && classList.contains('backdrop')) ||
+    (nodeName === 'svg' && classList.contains('close-button-image')) ||
+    nodeName === 'use'
+  ) {
+    closeModal();
+  } else if (watchedButton && refs.watchedBtn.classList.contains('current_btn')) {
+    cardRefForDelete.style.display = 'none';
+
+    watchedButton.classList.toggle('added');
+
+    if (watchedButton && watchedButton.classList.contains('added')) {
+      cardRefForDelete.style.display = 'block';
+    }
+  } else if (queueButton && refs.queueBtn.classList.contains('current_btn')) {
+    cardRefForDelete.style.display = 'none';
+
+    queueButton.classList.toggle('added');
+
+    if (queueButton && queueButton.classList.contains('added')) {
+      cardRefForDelete.style.display = 'block';
+    }
+  } else {
+    return;
+  }
+}
+
+function onBackdropEscClick(evt) {
+  if (evt.code === 'Escape') {
+    closeModal();
+  }
 }
