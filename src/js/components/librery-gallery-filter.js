@@ -4,6 +4,7 @@ const refs = {
   watchedBtn: document.querySelector('.js_btn_w'),
   queueBtn: document.querySelector('.js_btn_q'),
   cardsList: document.querySelector('.library-cards'),
+  main: document.querySelector('.js_container'),
 };
 
 const watched = JSON.parse(localStorage.getItem(`watched`));
@@ -56,19 +57,22 @@ function switchCurrentBtn(evt) {
 
 ////delete cards
 
-refs.cardsList.addEventListener('click', deleteCardsFromLibrary);
+refs.main.addEventListener('click', deleteCardsFromLibrary);
 
 function deleteCardsFromLibrary(evt) {
   const cardRef = evt.target.closest('.card-item');
-  let imageId = cardRef.querySelector('.card-image').dataset.id;
 
   if (cardRef && localStorage.getItem('activeButton') === 'watched') {
+    // console.log('click', evt.target);
+    let imageId = cardRef.querySelector('.card-image').dataset.id;
     deleteFilmId(imageId);
     localStorageIdSetToWatched();
     featchFilmsByIdWatched(watched);
 
     document.location.reload();
   } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
+    let imageId = cardRef.querySelector('.card-image').dataset.id;
+    // console.log('click', imageId);
     deleteFilmIdQueue(imageId);
     localStorageIdSetToQueue();
     featchFilmsByIdQueue(queue);
