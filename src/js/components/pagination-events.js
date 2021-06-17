@@ -17,7 +17,7 @@ refs.navContainer.addEventListener('click', onPaginationClick);
 async function onPaginationClick(evt) {
   pageType = localStorage.getItem('pageType')
   const evtClasslist = evt.target.classList;
-  if (evtClasslist.contains('pagination-item') || evtClasslist.contains('pagination-total')) {
+  if (evtClasslist.contains('pagination-item')) {
     const page = Number(evt.target.dataset.page);
     let data = null;
     if(pageType === 'default') {
