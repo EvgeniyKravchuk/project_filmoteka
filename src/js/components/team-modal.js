@@ -3,6 +3,7 @@ const refs = {
   openTeamModal: document.querySelector('.team_link'),
   teamModal: document.querySelector('.js-team-modal'),
   backdropTeamModal: document.querySelector('.team-backdrop'),
+  closeTeamlBtn: document.querySelector('.modal-team-close'),
 };
 
 refs.openTeamModal.addEventListener('click', openModal);
@@ -11,6 +12,7 @@ function openModal(e) {
   e.preventDefault();
   window.addEventListener('keydown', escKey);
   refs.backdropTeamModal.addEventListener('click', backdropClick);
+  refs.closeTeamlBtn.addEventListener('click', closeTeamModal);
   refs.body.classList.add('modal-team-open');
   refs.teamModal.classList.remove('is-hiddden');
 }
@@ -20,6 +22,7 @@ function closeTeamModal() {
   refs.body.classList.remove('modal-team-open');
   refs.teamModal.classList.add('is-hiddden');
   refs.backdropTeamModal.removeEventListener('click', backdropClick);
+  refs.closeTeamlBtn.removeEventListener('click', closeTeamModal);
 }
 
 function backdropClick(e) {
