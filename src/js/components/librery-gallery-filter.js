@@ -65,28 +65,30 @@ function deleteCardsFromLibrary(evt) {
   if (cardRef && localStorage.getItem('activeButton') === 'watched') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
 
-    deleteFilmId(imageId);
     localStorageIdSetToWatched();
 
     if (document.documentElement.clientWidth > 1024) {
+      deleteFilmId(imageId);
       cardRef.remove();
     } else if (cardRef.classList.contains('open')) {
       cardRef.classList.remove('open');
       cardRef.remove();
+      deleteFilmId(imageId);
     } else {
       cardRef.classList.add('open');
     }
   } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
 
-    deleteFilmIdQueue(imageId);
     localStorageIdSetToQueue();
 
     if (document.documentElement.clientWidth > 1024) {
+      deleteFilmId(imageId);
       cardRef.remove();
     } else if (cardRef.classList.contains('open')) {
       cardRef.classList.remove('open');
       cardRef.remove();
+      deleteFilmId(imageId);
     } else {
       cardRef.classList.add('open');
     }
