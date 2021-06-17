@@ -62,20 +62,21 @@ refs.main.addEventListener('click', deleteCardsFromLibrary);
 function deleteCardsFromLibrary(evt) {
   const cardRef = evt.target.closest('.card-item');
 
+  console.log(cardRef);
   if (cardRef && localStorage.getItem('activeButton') === 'watched') {
-    // console.log('click', evt.target);
+    console.log('click', evt.target);
     let imageId = cardRef.querySelector('.card-image').dataset.id;
     deleteFilmId(imageId);
     localStorageIdSetToWatched();
-    featchFilmsByIdWatched(watched);
+    // featchFilmsByIdWatched(watched);
 
-    document.location.reload();
+    // document.location.reload();
   } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
     // console.log('click', imageId);
     deleteFilmIdQueue(imageId);
     localStorageIdSetToQueue();
-    featchFilmsByIdQueue(queue);
+    // featchFilmsByIdQueue(queue);
 
     document.location.reload();
   } else {
