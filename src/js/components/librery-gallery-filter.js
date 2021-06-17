@@ -62,21 +62,34 @@ refs.main.addEventListener('click', deleteCardsFromLibrary);
 function deleteCardsFromLibrary(evt) {
   const cardRef = evt.target.closest('.card-item');
 
-  console.log(cardRef);
   if (cardRef && localStorage.getItem('activeButton') === 'watched') {
-    console.log('click', evt.target);
     let imageId = cardRef.querySelector('.card-image').dataset.id;
+
     deleteFilmId(imageId);
     localStorageIdSetToWatched();
-    // featchFilmsByIdWatched(watched);
 
-    // document.location.reload();
+    if (document.documentElement.clientWidth > 1024) {
+      cardRef.remove();
+    } else if (cardRef.classList.contains('open')) {
+      cardRef.classList.remove('open');
+      cardRef.remove();
+    } else {
+      cardRef.classList.add('open');
+    }
   } else if (cardRef && localStorage.getItem('activeButton') === 'queue') {
     let imageId = cardRef.querySelector('.card-image').dataset.id;
-    // console.log('click', imageId);
+
     deleteFilmIdQueue(imageId);
     localStorageIdSetToQueue();
-    // featchFilmsByIdQueue(queue);
+
+    if (document.documentElement.clientWidth > 1024) {
+      cardRef.remove();
+    } else if (cardRef.classList.contains('open')) {
+      cardRef.classList.remove('open');
+      cardRef.remove();
+    } else {
+      cardRef.classList.add('open');
+    }
 
     // document.location.reload();
   } else {
