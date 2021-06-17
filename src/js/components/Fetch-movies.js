@@ -33,22 +33,23 @@ export default class FetchMovies {
   async fetchCertainPopularMoviesPage(numberOfPage) {
     this._popularMoviesPage = numberOfPage;
     const res = await this._fetchMostPopularMovies();
-    this._popularMoviesPage += 1;
     return res;
   }
 
   async searchMovie(movieName) {
-    this._queryByNamePage = 1;
     this._searchQuery = movieName;
     localStorage.setItem('searchQuery', movieName);
     const res = await this._fetchMovieByName(movieName);
+    localStorage.setItem('searchedPageByName', '1')
 
     return res;
   }
 
   async nextSearchedMoviePage() {
     this._searchQuery = localStorage.getItem('searchQuery');
-    this._queryByNamePage++;
+    const page = (Number(localStorage.getItem('searchedPageByName'))) + 1;
+    localStorage.setItem('searchedPageByName', page);
+    this._queryByNamePage = page;
     const res = await this._fetchMovieByName(this._searchQuery);
     return res;
   }
@@ -62,7 +63,9 @@ export default class FetchMovies {
 
   async prevSearchedMoviePage() {
     this._searchQuery = localStorage.getItem('searchQuery');
-    this._queryByNamePage--;
+    const page = (Number(localStorage.getItem('searchedPageByName'))) - 1;
+    localStorage.setItem('searchedPageByName', page);
+    this._queryByNamePage = page;
     const res = await this._fetchMovieByName(this._searchQuery);
     return res;
   }
@@ -99,10 +102,8 @@ export default class FetchMovies {
         });
     });
     data.results.forEach((el,i) => {
-        if(el.release_date) {
-          el.release_date = el.release_date.slice(0, 4)
-        }
-        el.genre_ids = genresData[i]
+      el.release_date = el.release_date.slice(0, 4)
+      el.genre_ids = genresData[i]
     });
     return data;
   }
