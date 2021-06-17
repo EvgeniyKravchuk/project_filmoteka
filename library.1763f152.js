@@ -79,4 +79,4 @@ const e={body:document.querySelector("body"),openTeamModal:document.querySelecto
 },{"./librery-render-marcup":"HUAv"}],"I9BA":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/theme-switcher.js"),require("./js/components/localStorage"),require("./js/components/team-modal");var e=require("./js/components/librery-render-marcup");require("./js/components/librery-gallery-filter"),(0,e.renderQueueIfTheyActive)();
 },{"./sass/main.scss":"clu1","./js/components/theme-switcher.js":"sWR1","./js/components/localStorage":"MOHC","./js/components/team-modal":"Cw5H","./js/components/librery-render-marcup":"HUAv","./js/components/librery-gallery-filter":"TGjS"}]},{},["I9BA"], null)
-//# sourceMappingURL=/project_filmoteka/library.325ea03c.js.map
+//# sourceMappingURL=/project_filmoteka/library.1763f152.js.map
