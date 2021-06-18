@@ -27,10 +27,7 @@ function onMovieCardClick(evt) {
     refs.backdrop.classList.add('is-open');
     spinner.close();
     const movieId = cardRef.querySelector('.card-image').dataset.id;
-    fetchMovies.getMovieDetaisById(movieId)
-      .then(mockImage)
-      .then(openModal)
-      .catch(console.log);
+    fetchMovies.getMovieDetaisById(movieId).then(mockImage).then(openModal).catch(console.log);
   }
 }
 
@@ -53,7 +50,6 @@ function closeModal() {
 function onBackdropClick(evt) {
   const nodeName = evt.target.nodeName;
   const classList = evt.target.classList;
-  console.log(nodeName);
 
   if (
     (nodeName === 'DIV' && classList.contains('backdrop')) ||
@@ -61,7 +57,6 @@ function onBackdropClick(evt) {
     nodeName === 'use'
   ) {
     closeModal();
-    console.log(nodeName);
   }
 }
 

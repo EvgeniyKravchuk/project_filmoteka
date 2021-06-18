@@ -188,6 +188,14 @@
   .modal {
     color: #ffffff;
   }
+
+  .card-item:hover,
+  .card-item:focus {
+    transform: scale(1.05);
+    // box-shadow: 4px 3px 12px -1px rgba(207, 205, 197, 0.5);
+    box-shadow: 0 8px 17px 2px rgb(248 230 111 / 30%), 0 6px 10px 0 #f67e2c;
+    border-radius: 6px;
+  }
 }
 
 .day {
