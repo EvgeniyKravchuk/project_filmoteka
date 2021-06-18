@@ -9,11 +9,17 @@ export default function renderPaginationBody(data) {
 
   const navRef = document.querySelector('.pagination');
   const itemsRef = markupContainer.querySelectorAll('.pagination-item');
+  const itemFirst = markupContainer.querySelector('.item-first');
   const itemTotalRef = markupContainer.querySelector('.item-total');
   const itemsDotsFirstRef = markupContainer.querySelector('.item-dots-first');
   const itemsDotsLastRef = markupContainer.querySelector('.item-dots-last');
   const leftArrowRef = document.querySelector('.pagination-prev');
   const rightArrowRef = document.querySelector('.pagination-next');
+
+  if (!totalPages || totalPages === 0) {
+    navRef.hidden = true;
+    return;
+  }
 
   if (currPage === 1) {
     leftArrowRef.classList.add('hidden');
@@ -21,6 +27,7 @@ export default function renderPaginationBody(data) {
 
   if (currPage === totalPages) {
     rightArrowRef.classList.add('hidden');
+    leftArrowRef.classList.remove('hidden');
   }
 
   if (currPage !== 1 && currPage !== totalPages) {
@@ -31,6 +38,13 @@ export default function renderPaginationBody(data) {
   if (currPage >= 1 && currPage <= 5) {
     itemsDotsFirstRef.hidden = true;
     itemsDotsLastRef.hidden = false;
+    itemTotalRef.hidden = false;
+    itemFirst.hidden = false;
+    rightArrowRef.classList.remove('hidden');
+
+    if (window.screen.width < 768) {
+      itemFirst.hidden = true;
+    }
 
     itemsRef.forEach((item, index) => {
       item.classList.remove('current-item');
@@ -44,6 +58,11 @@ export default function renderPaginationBody(data) {
   if (currPage >= 5 && currPage <= totalPages - 5) {
     itemsDotsFirstRef.hidden = false;
     itemsDotsLastRef.hidden = false;
+
+    if (window.screen.width < 768) {
+      itemFirst.hidden = true;
+    }
+
     itemsRef.forEach((item, index) => {
       item.classList.remove('current-item');
       switch (index) {
@@ -76,11 +95,19 @@ export default function renderPaginationBody(data) {
   if (currPage >= totalPages - 4) {
     itemsDotsFirstRef.hidden = false;
     itemsDotsLastRef.hidden = true;
+
+    if (window.screen.width < 768) {
+      itemFirst.hidden = false;
+    }
+
     const reversedItemsRefs = [...itemsRef].reverse();
     reversedItemsRefs.forEach((item, index) => {
       item.classList.remove('current-item');
       changeItemText(item, totalPages - index);
       changeItemText(reversedItemsRefs[reversedItemsRefs.length - 1], 1);
+      if (window.screen.width < 768) {
+        changeItemText(reversedItemsRefs[reversedItemsRefs.length - 1], totalPages - 6);
+      }
       if (item.dataset.page == currPage) {
         item.classList.add('current-item');
       }
@@ -213,13 +240,13 @@ export default function renderPaginationBody(data) {
     });
   }
 
-  if (totalPages === 1) {
+  if (totalPages === 1 || !data.page) {
     navRef.hidden = true;
   } else {
     navRef.hidden = false;
   }
 
-  if (window.screen.width <= 768) {
+  if (window.screen.width < 768) {
     itemsDotsFirstRef.hidden = true;
     itemsDotsLastRef.hidden = true;
   }

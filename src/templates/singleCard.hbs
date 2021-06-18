@@ -10,7 +10,7 @@
       />
       <h2 class='movie-title'>{{title}}</h2>
       <p class='genre'>
-        <span class='genre-title'>{{#each genres}} {{this.name}}, {{/each}} </span>
+        <span class='genre-title'>{{#each genres}} <span>{{this.name}}</span> {{/each}} </span>
         <span>| {{release_date}} </span>
       </p>
     </li>

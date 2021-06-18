@@ -2,6 +2,7 @@ import cardListTemplate from '../../../templates/cardsList.hbs';
 import FetchMovies from '../Fetch-movies';
 import debounce from 'lodash.debounce';
 import cardFilmTemlate from '../../../templates/singleCard.hbs';
+import renderPaginationBody from '../pagination'
 
 const refs = {
   mainInput: document.querySelector('.js_search_input'),
@@ -42,7 +43,11 @@ function onDropDownListClick(event) {
   const filmId = event.target.attributes['filmId'].nodeValue;
   return movieService
     .getMovieDetaisById(filmId)
-    .then(renderFilm)
+    .then(data => {
+      renderFilm(data);
+      return data;
+    })
+    .then(renderPaginationBody)
     .then(clearList)
     .then( () => refs.mainInput.value = "")
     .catch(error => console.log(error));
