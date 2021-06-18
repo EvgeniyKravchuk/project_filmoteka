@@ -74,4 +74,3 @@ function mockImage(response) {
   return response;
 }
 
-export { mockImage };
