@@ -3,16 +3,16 @@
 @import './theme-switcher';
 .header {
   height: 230px;
-  @media screen and(max-width: 320px){
-    background:url(../images/header/header_m_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+  @media screen and(max-width: 320px) {
+    background: url(../images/header/header_m_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/header_m_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background: url(../images/header/header_m_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
-  @media screen and (max-width:768px){
-    background:url(../images/header/header_t_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+  @media screen and (max-width: 768px) {
+    background: url(../images/header/header_t_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/header_t_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background: url(../images/header/header_t_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
   @media screen and (min-width: 320px) {
@@ -38,10 +38,10 @@
       width: 50%;
     }
   }
-  @media screen and (min-width:769px ) {
-    background:url(../images/header/header_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+  @media screen and (min-width: 769px) {
+    background: url(../images/header/header_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/header_d_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background: url(../images/header/header_d_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
 }
@@ -125,6 +125,8 @@
   color: var(--p-dark-t-color);
   border: 1px solid var(--p-dark-t-color);
   border-radius: 5px;
+  transition: 0.2s linear;
+
   &:first-of-type {
     margin-right: 20px;
   }
@@ -143,6 +145,11 @@
     font-style: italic;
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+
+    box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.3) inset;
+
+    letter-spacing: 0.1em;
+    text-shadow: 3px 3px #ff981d, 7px 7px rgba(200, 120, 22, 0.2);
   }
 }
 .current_btn {
@@ -153,21 +160,21 @@
 }
 .library {
   @media screen and (max-width: 320px) {
-    background:url(../images/header/lib_m_x1.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+    background: url(../images/header/lib_m_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/lib_m_x2.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background: url(../images/header/lib_m_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
   @media screen and (min-width: 321px) and (max-width: 768px) {
-    background:url(../images/header/lib_t_x1.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+    background: url(../images/header/lib_t_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/lib_t_x2.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background: url(../images/header/lib_t_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
   @media screen and (min-width: 769px) {
-    background:url(../images/header/lib_d_x1.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+    background: url(../images/header/lib_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background:url(../images/header/lib_d_x2.jpg)center/cover no-repeat rgba(0, 0, 0, 0.56);
+      background: url(../images/header/lib_d_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
 }

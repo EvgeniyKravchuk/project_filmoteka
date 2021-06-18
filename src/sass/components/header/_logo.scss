@@ -1,25 +1,26 @@
-
-.logo-link{
-    display: flex;
-    align-items: baseline;
+.logo-link {
+  display: flex;
+  align-items: baseline;
 }
-.logo-pic{
-    width: 24px;
-    height: 24px;
+.logo-pic {
+  width: 24px;
+  height: 24px;
 }
-.logo-text{
-     @media screen and (min-width: 320px) and (max-width: 767px){
-    display: none;}
-        display: inline-block;
-        text-align: center;
-        color: var(--p-dark-t-color);
-        font-size: var(--font-h-size);
-        margin-left: 10px;
-        font-weight: 500;
-        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        &:hover,:focus{
+.logo-text {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    display: none;
+  }
+  display: inline-block;
+  text-align: center;
+  color: var(--p-dark-t-color);
+  font-size: var(--font-h-size);
+  margin-left: 10px;
+  font-weight: 500;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  :focus {
     color: var(--accent-color);
-    font-size:40px;
+    font-size: 40px;
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

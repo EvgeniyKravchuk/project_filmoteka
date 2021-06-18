@@ -233,6 +233,8 @@
 
   background-color: var(--p-dark-t-color);
 
+  transition: 0.2s linear;
+
   @media screen and (min-width: 768px) {
     width: 125px;
   }
