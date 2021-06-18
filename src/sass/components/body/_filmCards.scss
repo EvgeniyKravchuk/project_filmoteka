@@ -47,7 +47,8 @@
   font-weight: 500;
 }
 .genre {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-main);
   font-weight: 500;
   color: var(--accent-color);
@@ -58,4 +59,8 @@
       content: ',';
     }
   }
+}
+
+.genre-title {
+  margin-right: 4px;
 }

@@ -97,15 +97,19 @@
   top: 10px;
 
   background-color: var(--p-dark-t-color);
-
+  border-radius: 50%;
   width: 30px;
   height: 30px;
-
   border: none;
-
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 
   z-index: 1000;
+  &:hover,
+  :focus {
+    background-color: rgb(250, 140, 15);
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  }
 }
 
 .close-button-image {
@@ -185,8 +189,12 @@
 
   margin-bottom: 20px;
 }
+.movie-vote {
+  margin-left: 10px;
+}
 
-.movie-cardvote {
+.movie-cardvote,
+.movie-vote {
   display: inline-block;
 
   text-align: center;
