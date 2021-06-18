@@ -12,30 +12,44 @@
     />
   </head>
   <body class="js-body">
-      <header class="header library">
-        <div class="container">
-    <div class="site_nav">
-        <a href="./" aria-label="логотип сайта" class="logo-link">
-    <svg class="logo-pic" fill="#545454">
-        <use href="./images/svg/sprite.svg#icon-film"></use>
-    </svg><span lang="en" class="logo-text">Filmoteka</span></a>
-    <nav class="nav_list">
-    <a href="./index.html" class="nav_link">HOME</a>
-    <a href="./library.html" class="nav_link current">MY LIBRARY</a>
-    </nav>
+    <header class="header library">
+      <div class="container">
+        <div class="site_nav">
+          <a href="./" aria-label="логотип сайта" class="logo-link">
+            <svg class="logo-pic" fill="#545454">
+              <use href="./images/svg/sprite.svg#icon-film"></use></svg
+            ><span lang="en" class="logo-text">Filmoteka</span></a
+          >
+          <nav class="nav_list">
+            <a href="./index.html" class="nav_link">HOME</a>
+            <a href="./library.html" class="nav_link current">MY LIBRARY</a>
+          </nav>
+        </div>
+        <div class="btn_div">
+          <button type="button" class="lib_btn js_btn_w current_btn">WATCHED</button>
+          <button type="button" class="lib_btn js_btn_q">QUEUE</button>
+        </div>
+        <include src="./partials/theme-switcher.html"></include>
+      </div>
+    </header>
+    <div class="main container js_container">
+      <ul class="cards-list library-cards"></ul>
     </div>
-    <div class="btn_div">
-  <button type="button" class="lib_btn js_btn_w current_btn">WATCHED</button>
-  <button type="button" class="lib_btn js_btn_q ">QUEUE</button>
-  </div>
-  <include src="./partials/theme-switcher.html"></include>
-</div>
-      </header>
-      <div class="main container js_container ">
-        <ul class="cards-list library-cards"></ul>
+    <div class="scroll-up">
+      <svg class="scroll-up__svg" viewBox="-2 -2 52 52">
+        <path
+          class="scroll-up__svg-path"
+          d="
+        M24,0
+        a24,24 0 0,1 0,48
+        a24,24 0 0,1 0,-48
+        "
+        ></path>
+      </svg>
     </div>
+
     <!--🍅Тут подключаем части HTML (паршалы):-->
-<include src="./partials/backdrop.html"></include>
+    <include src="./partials/backdrop.html"></include>
     <include src="./partials/footer.html"></include>
     <include src="./partials/team-modal.html"></include>
     <!-- 🍅Наш JS -->
