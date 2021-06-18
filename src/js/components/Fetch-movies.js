@@ -47,7 +47,7 @@ export default class FetchMovies {
 
   async nextSearchedMoviePage() {
     this._searchQuery = localStorage.getItem('searchQuery');
-    const page = (Number(localStorage.getItem('searchedPageByName'))) + 1;
+    const page = (Number(localStorage.getItem('searchedPageByName')) + 1);
     localStorage.setItem('searchedPageByName', page);
     this._queryByNamePage = page;
     const res = await this._fetchMovieByName(this._searchQuery);
@@ -56,6 +56,7 @@ export default class FetchMovies {
 
   async certainSearchedMoviePage(numberOfPage) {
     this._searchQuery = localStorage.getItem('searchQuery');
+    localStorage.setItem('searchedPageByName', numberOfPage);
     this._queryByNamePage = numberOfPage;
     const res = await this._fetchMovieByName(this._searchQuery);
     return res;
@@ -63,7 +64,7 @@ export default class FetchMovies {
 
   async prevSearchedMoviePage() {
     this._searchQuery = localStorage.getItem('searchQuery');
-    const page = (Number(localStorage.getItem('searchedPageByName'))) - 1;
+    const page = (Number(localStorage.getItem('searchedPageByName')) - 1);
     localStorage.setItem('searchedPageByName', page);
     this._queryByNamePage = page;
     const res = await this._fetchMovieByName(this._searchQuery);
@@ -80,6 +81,7 @@ export default class FetchMovies {
 
   async getMovieDetaisById(id) {
     const {data} = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${this.lang}`);
+    console.log(data)
     return data;
   }
 
@@ -87,6 +89,7 @@ export default class FetchMovies {
     const {data} = await axios.get(
       `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${this._searchQuery}&language=${this.lang}&page=${this._queryByNamePage}&include_adult=${this.adult}`,
     );
+    await this._makeupDescription(data);
     return data;
   }
 
@@ -94,17 +97,7 @@ export default class FetchMovies {
     const {data} = await axios.get(
       `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${this.lang}&page=${this._popularMoviesPage}`,
     );
-    const genres = await this._fetchGenresList();
-    const genresIds = genres.map(genre => genre.id);
-    const genresData = data.results.map(x => {
-        return x.genre_ids.map(y => {
-            return genres[genresIds.indexOf(y)].name
-        });
-    });
-    data.results.forEach((el,i) => {
-      el.release_date = el.release_date.slice(0, 4)
-      el.genre_ids = genresData[i]
-    });
+    await this._makeupDescription(data);
     return data;
   }
 
@@ -114,5 +107,24 @@ export default class FetchMovies {
       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${this.lang}`,
     );
     return genres.data.genres;
+  }
+
+  async _makeupDescription(data) {
+    const genres = await this._fetchGenresList();
+    const genresIds = genres.map(genre => genre.id);
+    const genresData = data.results.map(x => {
+        return x.genre_ids.map(y => {
+            return genres[genresIds.indexOf(y)].name
+        });
+    });
+    data.results.forEach((el,i) => {
+      if(el.release_date) {
+        el.release_date = el.release_date.slice(0, 4)
+      } else {
+        el.release_date = 'unknown'
+      }
+      el.genre_ids = genresData[i]
+      return data;
+    });
   }
 }
