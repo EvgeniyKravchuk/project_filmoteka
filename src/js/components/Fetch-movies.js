@@ -81,7 +81,9 @@ export default class FetchMovies {
 
   async getMovieDetaisById(id) {
     const {data} = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${this.lang}`);
-    console.log(data)
+    if(data.release_date) {
+      data.release_date = data.release_date.slice(0,4)
+    }
     return data;
   }
 
