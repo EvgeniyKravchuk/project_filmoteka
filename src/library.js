@@ -6,6 +6,8 @@ import './js/components/localStorage';
 import './js/components/team-modal';
 import './js/components/librery-render-marcup';
 import './js/components/librery-gallery-filter';
-import {  renderQueueIfTheyActive } from './js/components/librery-render-marcup';
+import './js/components/buttonScrollTo';
 
-renderQueueIfTheyActive()
+import { renderQueueIfTheyActive } from './js/components/librery-render-marcup';
+
+renderQueueIfTheyActive();
