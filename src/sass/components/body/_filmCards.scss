@@ -9,6 +9,7 @@
 .card-item {
   cursor: pointer;
   transition: 0.5s linear;
+
   @media screen and (max-width: 767px) {
     width: 280px;
     margin-right: auto;
@@ -19,6 +20,7 @@
     flex-basis: calc(100% / 2 - 30px);
     margin-top: 30px;
     margin-left: 30px;
+
     // margin-left: 0;
   }
   @media screen and (min-width: 1024px) {
@@ -29,13 +31,25 @@
 }
 .card-item:hover,
 .card-item:focus {
-  transform: scale(1.05);
-  // box-shadow: 4px 3px 12px -1px rgba(207, 205, 197, 0.5);
-  box-shadow: 0 8px 17px 2px rgb(248 230 111 / 30%), 0 6px 10px 0 #f67e2c;
-  border-radius: 6px;
+  box-shadow: 0 8px 17px 2px rgb(248 230 111 / 30%), 0px 6px 10px 4px #3f0101;
 }
 .card-image {
   border-radius: 6px;
+
+  @media screen and (max-width: 767px) {
+    height: 402px;
+    width: 280px;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 398px;
+    width: 293px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 398px;
+    width: 274px;
+  }
 }
 .movie-title {
   display: block;
@@ -49,7 +63,7 @@
 }
 .genre {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   font-size: var(--font-size-main);
   font-weight: 500;
   line-height: 1.34;
@@ -61,6 +75,10 @@
       content: ',';
     }
   }
+}
+
+.genre span:last-child {
+  min-width: 35px;
 }
 
 .genre-title {
