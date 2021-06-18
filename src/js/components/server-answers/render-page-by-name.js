@@ -33,15 +33,7 @@ function onFormSubmit(event) {
   }
   return movieService
     .searchMovie(movieName)
-    .then(response => {
-       response.results = response.results.map(element => {
-        if (!element.poster_path) {
-          element.poster_path = 'https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg';
-        }
-        return element;
-       });
-      return response;
-    })
+    .then(mockImage)
     .then(data => {
       renderPageByName(data);
       localStorage.setItem('pageType', 'byName');
@@ -69,3 +61,15 @@ function renderPageByName(data) {
     return renderPage(data);
   }
 }
+
+function mockImage(response) {
+  response.results = response.results.map(element => {
+    if (!element.poster_path) {
+      element.poster_path = 'https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg';
+    }
+    return element;
+  });
+  return response;
+}
+
+export { mockImage };
