@@ -74,9 +74,13 @@ a.link {
   line-height: 1.3;
   &:hover,
   :focus {
-    color: rgba(255, 81, 0, 0.692);
+    /* color: rgba(255, 81, 0, 0.692);
     font-size: 18px;
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+    text-shadow: 0 0 5px rgb(252, 114, 1), 0 0 10px white, 0 0 15px rgba(253, 116, 3, 0.842),
+      0 0 20px rgb(255, 82, 2), 0 0 35px rgb(255, 81, 1), 0 0 40px rgb(255, 82, 2),
+      0 0 50px rgb(248, 81, 3), 0 0 75px rgb(250, 82, 4);
+    color: orangered;
   }
 }
 
@@ -90,12 +94,17 @@ ul.team-list {
   top: 10px;
 
   background-color: var(--p-dark-t-color);
-
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   border: none;
   cursor: pointer;
   z-index: 1000;
+  &:hover,
+  :focus {
+    background-color: rgb(250, 140, 15);
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  }
 }
 
 .close-button-team-image {
