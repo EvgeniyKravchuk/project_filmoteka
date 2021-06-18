@@ -2,7 +2,7 @@ import cardListTemplate from '../../../templates/cardsList.hbs';
 import FetchMovies from '../Fetch-movies';
 import debounce from 'lodash.debounce';
 import cardFilmTemlate from '../../../templates/singleCard.hbs';
-import renderPaginationBody from '../pagination'
+import renderPaginationBody from '../pagination';
 
 const refs = {
   mainInput: document.querySelector('.js_search_input'),
@@ -31,7 +31,7 @@ function onInputChange(e) {
 
 function renderListTitle(body) {
   const markup = cardListTemplate(body.results);
-  refs.liveSearchContainer.insertAdjacentHTML('beforeend', markup); 
+  refs.liveSearchContainer.insertAdjacentHTML('beforeend', markup);
 }
 
 refs.liveSearchContainer.addEventListener('click', onDropDownListClick);
@@ -43,13 +43,14 @@ function onDropDownListClick(event) {
   const filmId = event.target.attributes['filmId'].nodeValue;
   return movieService
     .getMovieDetaisById(filmId)
+    .then(mockImage)
     .then(data => {
       renderFilm(data);
       return data;
     })
     .then(renderPaginationBody)
     .then(clearList)
-    .then( () => refs.mainInput.value = "")
+    .then(() => (refs.mainInput.value = ''))
     .catch(error => console.log(error));
 }
 
@@ -63,5 +64,13 @@ function renderFilm(data) {
 function clearList() {
   refs.liveSearchContainer.innerHTML = '';
 }
+function mockImage(response) {
+  if (!response.poster_path) {
+    response.poster_path =
+      'https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg';
+    return response;
+  }
+  return response;
+}
 
-
+export { mockImage };

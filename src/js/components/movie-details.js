@@ -2,6 +2,7 @@ import modalTpl from '../../templates/modal.hbs';
 import FetchMovies from './Fetch-movies';
 import localStorage from './localStorage.js';
 import { spinner } from '../../js/components/server-answers/preloader';
+import { mockImage } from './server-answers/drop-down-list';
 
 const fetchMovies = new FetchMovies();
 
@@ -26,7 +27,10 @@ function onMovieCardClick(evt) {
     refs.backdrop.classList.add('is-open');
     spinner.close();
     const movieId = cardRef.querySelector('.card-image').dataset.id;
-    fetchMovies.getMovieDetaisById(movieId).then(openModal).catch(console.log);
+    fetchMovies.getMovieDetaisById(movieId)
+      .then(mockImage)
+      .then(openModal)
+      .catch(console.log);
   }
 }
 
