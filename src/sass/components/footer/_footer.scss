@@ -1,7 +1,10 @@
 //🍅Сюда импортируем все из этой папки
 @import './teamLogo.scss';
 .footer {
+  font-family: var(--font-family-1);
   font-size: 16px;
+  font-weight: 500;
+  line-height: 1.188;
   text-align: center;
   padding: 30px;
   color: var(--p-text-color);
