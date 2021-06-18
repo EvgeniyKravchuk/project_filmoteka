@@ -3,13 +3,19 @@
 @import './theme-switcher';
 .header {
   height: 230px;
-  @media screen and (min-width: 320px) {
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(../images/header/header_m_x1.jpg);
+  @media screen and(max-width: 320px) {
+    background: url(../images/header/header_m_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/header/header_m_x2.jpg);
+      background: url(../images/header/header_m_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
+  }
+  @media screen and (max-width: 768px) {
+    background: url(../images/header/header_t_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+    @media screen and (min-resolution: 2dppx) {
+      background: url(../images/header/header_t_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
+    }
+  }
+  @media screen and (min-width: 320px) {
     .s_form_input {
       display: inline-flex;
       width: 99%;
@@ -17,40 +23,28 @@
     .search_pic {
       margin-left: -22px;
     }
-
     .search_form {
       position: relative;
     }
   }
   @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(../images/header/header_t_x1.jpg);
-    @media screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/header/header_t_x2.jpg);
-    }
     .search_form {
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;  
+      justify-content: center;
     }
     .s_form_input {
       width: 50%;
     }
   }
-  @media screen and (min-width: 1024px) {
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(../images/header/header_d_x1.jpg);
+  @media screen and (min-width: 769px) {
+    background: url(../images/header/header_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/header/header_d_x2.jpg);
+      background: url(../images/header/header_d_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 }
-
 .nav_list {
   display: flex;
   align-items: baseline;
@@ -60,23 +54,35 @@
   margin-bottom: 41px;
 }
 .nav_link {
+  position: relative;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 0.8;
   color: var(--p-dark-t-color);
   text-align: right;
+  transition: 0.2s linear;
+
   &.current {
     &::after {
       content: '';
+      position: absolute;
+      left: 0;
+      bottom: -7px;
       display: block;
       width: 100%;
       height: 3px;
       background-color: var(--accent-color);
+
       transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
   &:hover,
   :focus {
-    color: var(--accent-color);
-    font-style: italic;
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 0 5px rgb(252, 114, 1), 0 0 10px white, 0 0 15px rgba(253, 116, 3, 0.842),
+      0 0 20px rgb(255, 82, 2), 0 0 35px rgb(255, 81, 1), 0 0 40px rgb(255, 82, 2),
+      0 0 50px rgb(248, 81, 3), 0 0 75px rgb(250, 82, 4);
+    // font-style: italic;
+    // transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 .nav_link:first-of-type {
@@ -126,59 +132,67 @@
 }
 .lib_btn {
   font-size: var(--font-size-main);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 0.75;
   height: 44px;
   background-color: transparent;
   color: var(--p-dark-t-color);
   border: 1px solid var(--p-dark-t-color);
-  border-radius: 3px;
+  border-radius: 5px;
+  transition: 0.2s linear;
+
   &:first-of-type {
-    margin-right: 7%;
+    margin-right: 20px;
   }
   @media screen and (min-width: 320px) {
-    width: 45%;
+    width: 130px;
   }
   @media screen and (min-width: 768px) {
     width: 136px;
+    &:first-of-type {
+      margin-right: 15px;
+    }
   }
-  &:hover,
-  :focus {
-    color: var(--p-text-color);
-    background-color: #fff;
-    font-style: italic;
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and(min-width: 1024px) {
+    &:hover {
+      letter-spacing: 0.1em;
+      text-shadow: 3px 3px #ff981d, 7px 7px rgba(200, 120, 22, 0.2);
+    }
+  }
+
+  &:hover {
+    color: var(--p-dark-t-color);
     cursor: pointer;
+
+    // box-shadow: 200px 0 0 0 rgba(77, 75, 75, 0.3) inset;
   }
 }
 .current_btn {
+  color: var(--p-dark-t-color);
   background-color: var(--accent-color);
   border: transparent;
-}
 
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+}
 .library {
-  @media screen and (min-width: 320px) {
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(../images/header/lib_m_x1.jpg);
+  @media screen and (max-width: 320px) {
+    background: url(../images/header/lib_m_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/header/lib_m_x2.jpg);
+      background: url(../images/header/lib_m_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
-  @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(../images/header/lib_t_x1.jpg);
+  @media screen and (min-width: 321px) and (max-width: 768px) {
+    background: url(../images/header/lib_t_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/header/lib_t_x2.jpg);
+      background: url(../images/header/lib_t_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
-  @media screen and (min-width: 1024px) {
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(../images/header/lib_d_x1.jpg);
+  @media screen and (min-width: 769px) {
+    background: url(../images/header/lib_d_x1.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     @media screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/header/lib_d_x2.jpg);
+      background: url(../images/header/lib_d_x2.jpg) center/cover no-repeat rgba(0, 0, 0, 0.56);
     }
   }
-  background-repeat: no-repeat;
-  background-size: cover;
 }

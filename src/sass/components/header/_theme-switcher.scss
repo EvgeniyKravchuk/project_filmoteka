@@ -9,13 +9,13 @@
 // FCFCFC - stars
 
 .wrapper {
-@media screen and (max-width:767px) {
-  left: 20px
-}
+  @media screen and (max-width: 767px) {
+    left: 20px;
+  }
 
   position: absolute;
-  top: 10px;
-  left: 75px;
+  top: 5px;
+  left: 72px;
 
   text-align: center;
 }

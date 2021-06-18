@@ -10,6 +10,7 @@ const refs = {
   mainContainer: document.querySelector('.js_container'),
   queryError: document.querySelector('.error_text'),
   liveSearchContainer: document.querySelector('.live-search-wrapper'),
+  mainInput: document.querySelector('.js_search_input'),
 };
 refs.formInput.addEventListener('submit', onFormSubmit);
 
@@ -31,6 +32,7 @@ function onFormSubmit(event) {
       .then(() => (refs.queryError.style.display = 'block'))
       .catch(error => console.log(error));
   }
+
   return movieService
     .searchMovie(movieName)
     .then(mockImage)

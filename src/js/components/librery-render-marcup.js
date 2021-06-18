@@ -45,3 +45,11 @@ function renderMarcupForWotchedFilms(data) {
 function renderMarcupForQueueFilms(data) {
   refs.main.insertAdjacentHTML('beforeend', cardLibreryTpl(data));
 }
+
+export function renderQueueIfTheyActive() {
+  if (localStorage.getItem('activeButton') === 'queue') {
+    return;
+  } else {
+    featchFilmsByIdWatched();
+  }
+}

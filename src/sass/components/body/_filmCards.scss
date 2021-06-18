@@ -1,53 +1,66 @@
-.cards-list{
-@media screen and (min-width: 768px){
-display: flex;
-flex-wrap: wrap;
-margin-top: -30px;
-margin-left: -30px;
+.cards-list {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -30px;
+    margin-left: -30px;
+  }
 }
-}
-.card-item{
-    cursor: pointer;
-@media screen and (max-width: 767px){
+.card-item {
+  cursor: pointer;
+  transition: 0.5s linear;
+  @media screen and (max-width: 767px) {
     width: 280px;
-         margin-right:auto;
-         margin-left: auto;
-         margin-top: 20px;
-}
-@media screen and (min-width: 768px){
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 768px) {
     flex-basis: calc(100% / 2 - 30px);
     margin-top: 30px;
     margin-left: 30px;
     // margin-left: 0;
-    }
-@media screen and (min-width: 1024px){
+  }
+  @media screen and (min-width: 1024px) {
     flex-basis: calc(100% / 3 - 30px);
     // margin-left: 0;
     // &:nth-child(3n+3){margin-right: 0px;}
-    }
+  }
 }
-.card-image{
-    border-radius: 6px;
+.card-item:hover,
+.card-item:focus {
+  transform: scale(1.05);
+  // box-shadow: 4px 3px 12px -1px rgba(207, 205, 197, 0.5);
+  box-shadow: 0 8px 17px 2px rgb(248 230 111 / 30%), 0 6px 10px 0 #f67e2c;
+  border-radius: 6px;
 }
-.movie-title{
-    display: block;
-    text-transform: uppercase;
-    // display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: var(--font-size-main);
-    font-weight: 500;
+.card-image {
+  border-radius: 6px;
 }
-.genre{
-    display: inline-block;
-    font-size: var(--font-size-main);
-    font-weight: 500;
-    color: var(--accent-color);
+.movie-title {
+  display: block;
+  text-transform: uppercase;
+  // display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: var(--font-size-main);
+  font-weight: 500;
+}
+.genre {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-main);
+  font-weight: 500;
+  color: var(--accent-color);
 }
 .genre-title span {
-    &:not(:last-of-type){
-        &::after {
-            content: ",";
-        }
+  &:not(:last-of-type) {
+    &::after {
+      content: ',';
     }
+  }
+}
+
+.genre-title {
+  margin-right: 4px;
 }
